@@ -35,3 +35,42 @@ C:\Users\Neo Sellberg\source\repos\TrexMonoGame\TrexRunner\obj\Debug\net6.0-wind
 C:\Users\Neo Sellberg\source\repos\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.pdb
 C:\Users\Neo Sellberg\source\repos\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.genruntimeconfig.cache
 C:\Users\Neo Sellberg\source\repos\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\ref\TrexRunner.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\TrexRunner.exe
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\TrexRunner.deps.json
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\TrexRunner.runtimeconfig.json
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\TrexRunner.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\TrexRunner.pdb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\MonoGame.Framework.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.Direct2D1.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.Direct3D11.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.Direct3D9.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.DXGI.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.Mathematics.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.MediaFoundation.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.XAudio2.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\SharpDX.XInput.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\runtimes\debian-x64\native\libuv.so
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\runtimes\fedora-x64\native\libuv.so
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\runtimes\opensuse-x64\native\libuv.so
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\runtimes\osx\native\libuv.dylib
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\runtimes\rhel-x64\native\libuv.so
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\runtimes\win7-arm\native\libuv.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\runtimes\win7-x64\native\libuv.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\runtimes\win7-x86\native\libuv.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.csproj.AssemblyReference.cache
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.AssemblyInfoInputs.cache
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.AssemblyInfo.cs
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.csproj.CoreCompileInputs.cache
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.sourcelink.json
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\refint\TrexRunner.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.pdb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.genruntimeconfig.cache
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\ref\TrexRunner.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\TrexIcon.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.csproj.Up2Date
