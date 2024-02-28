@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Net;
 
 namespace TrexRunner;
 
@@ -29,7 +30,7 @@ public partial class Game1 : Game
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        player.Texture = Content.Load<Texture2D>("TrexIcon.ico");
+        player.Texture = Content.Load<Texture2D>("Resources/TrexIcon");
         // TODO: use this.Content to load your game content here
     }
 
@@ -46,7 +47,11 @@ public partial class Game1 : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
-        
+        _spriteBatch.Begin();
+
+        player.Draw(_spriteBatch);
+            
+        _spriteBatch.End();
 
         // TODO: Add your drawing code here
 
