@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 using System.Net;
+
 
 namespace TrexRunner;
 
@@ -12,34 +14,52 @@ public partial class Game1 : Game
     private SpriteBatch _spriteBatch;
     Player player;
 
+    
 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
+      
     }
 
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
-        player = new Player();
+        player = new Player(new Vector2(0, 0));
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        player.Texture = Content.Load<Texture2D>("Resources/TrexIcon");
+        player.Texture = Content.Load<Texture2D>("Resources/Player");
+
         // TODO: use this.Content to load your game content here
     }
 
     protected override void Update(GameTime gameTime)
     {
+        
+
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
         // TODO: Add your update logic here
+        player.Update();
+
+        MouseState mouse = Mouse.GetState();
+       
+        
+
+
+        if (mouse.LeftButton == ButtonState.Pressed) 
+        {
+            Vector2 dir = mouse.Position.ToVector2() - player.Position;
+            player.Position += new Vector2(player.Speed* (float)gameTime.ElapsedGameTime.TotalSeconds, player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds) * dir;
+        }
 
         base.Update(gameTime);
     }

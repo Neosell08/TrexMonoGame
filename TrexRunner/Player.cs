@@ -15,10 +15,15 @@ namespace TrexRunner
         {
             public Texture2D Texture;
             public Color Color;
+            public Vector2 Position;
+            public float Speed = 20; 
+
+
             Random rng = new Random();
-            public Player()
+            public Player(Vector2 pos)
             {
                 Color = Color.White;
+                Position = pos;
             }
             public void Update()
             {
@@ -26,7 +31,7 @@ namespace TrexRunner
             }
             public void Draw(SpriteBatch spriteBatch)
             {
-                spriteBatch.Draw(Texture, new Vector2(0, 0), Color);
+                spriteBatch.Draw(Texture, Position, Color);
             }
            
            

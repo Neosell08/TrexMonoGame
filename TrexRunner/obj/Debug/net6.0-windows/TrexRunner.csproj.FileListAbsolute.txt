@@ -113,3 +113,5 @@ D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\refint\Tr
 D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.pdb
 D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\TrexRunner.genruntimeconfig.cache
 D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\ref\TrexRunner.dll
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Computer.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Player.xnb

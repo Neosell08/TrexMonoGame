@@ -4,9 +4,11 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Coding/VS_Projects/TrexMonoGame/TrexRunner/Content/Resources/TrexIcon.ico</File>
+    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Computer.png</File>
+    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Player.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
