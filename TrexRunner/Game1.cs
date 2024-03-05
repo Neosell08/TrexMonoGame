@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -13,22 +14,29 @@ public partial class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     Player player;
+    public static Random rng = new Random();
+    public static ContentManager _content;
 
-    
+
 
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+        _content = Content;
 
-      
+
     }
 
     protected override void Initialize()
     {
         // TODO: Add your initialization logic here
         player = new Player(new Vector2(0, 0));
+        player.Collider = new CircleCollider(GetTextureCenter(player.Texture, player.Position), player.Texture.Height/2);
+        player.DrawCollider = true;
+        
+
         base.Initialize();
     }
 
@@ -53,12 +61,12 @@ public partial class Game1 : Game
         MouseState mouse = Mouse.GetState();
        
         
-
+        
 
         if (mouse.LeftButton == ButtonState.Pressed) 
         {
             Vector2 dir = mouse.Position.ToVector2() - player.Position;
-            player.Position += new Vector2(player.Speed* (float)gameTime.ElapsedGameTime.TotalSeconds, player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds) * dir;
+            player.Move(new Vector2(player.Speed* (float)gameTime.ElapsedGameTime.TotalSeconds, player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds) * dir);
         }
 
         base.Update(gameTime);
@@ -76,5 +84,19 @@ public partial class Game1 : Game
         // TODO: Add your drawing code here
 
         base.Draw(gameTime);
+    }
+
+    public static double Distance(Vector2 p1, Vector2 p2)
+    {
+        return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p1.Y, 2));
+    }
+    public static double Distance(Point p1, Point p2)
+    {
+        return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p1.Y, 2));
+    }
+
+    public static Vector2 GetTextureCenter(Texture2D texture, Vector2 offset)
+    {
+        return new Vector2(offset.X + (texture.Width / 2), offset.Y + (texture.Height / 2));
     }
 }

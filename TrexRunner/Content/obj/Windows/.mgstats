@@ -1,2 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/Coding/VS_Projects/TrexMonoGame/TrexRunner/Content/Resources/TrexIcon.ico","D:/Coding/VS_Projects/TrexMonoGame/TrexRunner/Content/bin/Windows/Resources/TrexIcon.xnb","TextureProcessor","Texture2DContent",9662,9301,0,1275307
+"C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Computer.png","C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/bin/Windows/Resources/Computer.xnb","TextureProcessor","Texture2DContent",757,9301,0.2809694
+"C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/pixel.png","C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/bin/Windows/Resources/pixel.xnb","TextureProcessor","Texture2DContent",83,89,0.0106999
+"C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Player.png","C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/bin/Windows/Resources/Player.xnb","TextureProcessor","Texture2DContent",160,281,0.0103395
