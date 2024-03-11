@@ -116,3 +116,6 @@ D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\obj\Debug\net6.0-windows\ref\TrexR
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Computer.xnb
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Player.xnb
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\pixel.xnb
+D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Computer.xnb
+D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\pixel.xnb
+D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Player.xnb

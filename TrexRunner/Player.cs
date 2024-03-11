@@ -34,7 +34,7 @@ namespace TrexRunner
             }
             public void Draw(SpriteBatch spriteBatch)
             {
-                spriteBatch.Draw(Texture, Position, Color);
+                spriteBatch.Draw(Texture, Position, null, Color, 0, Game1.GetTextureCenter(Texture, Vector2.Zero, null), TextureScale, SpriteEffects.None, 0);
                 if (DrawCollider)
                 {
                     Collider.Draw(spriteBatch);
@@ -58,6 +58,12 @@ namespace TrexRunner
                 Move(dir);
             }
 
+
+            public void SetPos(Vector2 target)
+            {
+                Move(target - Position);
+            }
+
             
         }
     }
@@ -72,6 +78,8 @@ namespace TrexRunner
         public void Move(Vector2 dir, float speed);
 
         public void Move(Vector2 dir, double speed);
+
+        public void SetPos(Vector2 target);
     }
     
 }

@@ -35,12 +35,12 @@ namespace TrexRunner
     public class CircleCollider : Collider
     {
         
-        double Radius;
-
+        public double Radius;
+        
         public override bool IsColliding(Vector2 pos)
         {
             double dist = Game1.Distance(Position, pos);
-
+            
             if (dist <= Radius)
             {
                 return true;
