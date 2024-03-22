@@ -9,13 +9,18 @@ using SharpDX.MediaFoundation;
 using System.CodeDom;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
+using System.Xml.Linq;
+using SharpDX.Direct3D9;
 
 namespace TrexRunner
 {
     public abstract class Collider
     {
         public static Texture2D PixelTexture = Game1._content.Load<Texture2D>("Resources/pixel");
-        public Vector2 Position;
+        public abstract Vector2 Position {  get; set; }
+
+        public List<string> tags = new List<string>();
+        
 
 
         public abstract bool IsColliding(Vector2 pos);
@@ -24,7 +29,12 @@ namespace TrexRunner
 
         public abstract void Draw(SpriteBatch spritebatch);
 
-        
+        public override string ToString()
+        {
+
+            return $"GameObject: {this.GetType().Name}, Position: ({Position.X}, {Position.Y})";
+        }
+
     }
 
 
@@ -34,13 +44,19 @@ namespace TrexRunner
 
     public class CircleCollider : Collider
     {
-        
-        public double Radius;
-        
+        Vector2 _Position;
+        double Radius;
+        Vector2 TopLeftCorner;
+        public override Vector2 Position { get { return _Position; } set 
+            {
+                _Position = value;
+                TopLeftCorner = new Vector2(Convert.ToInt32(Position.X - Radius), Convert.ToInt32(Position.Y - Radius));
+            } }
+
         public override bool IsColliding(Vector2 pos)
         {
             double dist = Game1.Distance(Position, pos);
-            
+
             if (dist <= Radius)
             {
                 return true;
@@ -52,24 +68,19 @@ namespace TrexRunner
         }
         public override bool IsColliding(Collider collider)
         {
-            if (collider is BoxCollider)
+            if (collider is BoxCollider box)
             {
-                double m = collider.Position.Y - Position.Y;
-                double n = collider.Position.X - Position.X;
-       
-                double ratio = Math.Sqrt(Math.Pow(n, 2) + Math.Pow(m, 2)) / Radius;
-
-
-
-                Vector2 newPos = new Vector2((float)(n * ratio), (float)(m * ratio));
+                float x = Math.Max(box.Rectangle.Left, Math.Min(Position.X, box.Rectangle.Right));
+                float y = Math.Max(box.Rectangle.Top, Math.Min(Position.Y, box.Rectangle.Bottom));
                 
-                return collider.IsColliding(newPos);
+                
+                return IsColliding(new Vector2(x, y));
             }
             else if (collider is CircleCollider circle)
             {
 
                 double dist = Game1.Distance(circle.Position, Position);
-
+                
                 if (circle.Radius + Radius > dist)
                 {
                     return false;
@@ -86,18 +97,28 @@ namespace TrexRunner
         {
             Position = pos;
             Radius = radius;
+            TopLeftCorner = new Vector2(Convert.ToInt32(pos.X-radius), Convert.ToInt32(pos.Y - radius));
         }
 
         public override void Draw(SpriteBatch spritebatch)
         {
             
-            spritebatch.Draw(PixelTexture, Position, null, Color.Magenta, 0, Vector2.Zero, new Vector2((int)(Radius*2), (int)(Radius*2)), 0, 0);
+            spritebatch.Draw(PixelTexture, TopLeftCorner, null, Color.Magenta, 0, Vector2.Zero, new Vector2((int)(Radius*2), (int)(Radius*2)), 0, 0);
         }
-
+        
     }
+
+
+
+
+
+
+
     public class BoxCollider : Collider
     {
-        Rectangle Rectangle = new Rectangle();
+        public Rectangle Rectangle = new Rectangle();
+        Vector2 _Position;
+        public override Vector2 Position { get { return _Position; } set { _Position = value; Rectangle.X = (int)value.X; Rectangle.Y = (int)value.Y; } }
         public override bool IsColliding(Vector2 pos)
         {
             
@@ -129,6 +150,13 @@ namespace TrexRunner
         public override void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(PixelTexture, Position, null, Color.Magenta, 0, Vector2.Zero, new Vector2(Rectangle.Width, Rectangle.Height), 0, 0);
+        }
+
+
+        public BoxCollider(Vector2 pos, int width, int height)
+        {
+            Rectangle = new Rectangle((int)pos.X, (int)pos.Y, width, height);
+            Position = pos;
         }
     }
     

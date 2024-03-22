@@ -4,11 +4,15 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Coding/VS_Projects/TrexMonoGame/TrexRunner/Content/Resources/Computer.png</File>
-    <File>D:/Coding/VS_Projects/TrexMonoGame/TrexRunner/Content/Resources/pixel.png</File>
-    <File>D:/Coding/VS_Projects/TrexMonoGame/TrexRunner/Content/Resources/Player.png</File>
+    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Background.jpg</File>
+    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Computer.png</File>
+    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/pixel.png</File>
+    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Player.png</File>
+    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/test.fx</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
