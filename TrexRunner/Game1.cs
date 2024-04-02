@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 
@@ -21,8 +22,15 @@ public partial class Game1 : Game
     public Effect testShader;
     private RenderTarget2D RenderTarget;
     private Boss CurBoss;
+    private bool MousePressed;
+    private Vector2 LastMousePos;
+    public static float DeltaTime;
+    private float ShootVelocityTreshold = 1;
+    private PlayerBullet TestBullet;
 
-    Vector2 Resolution;
+    public static Vector2 ScreenResolution;
+    public static Vector2 WindowResolution;
+    public List<Projectile> Projectiles;
     
     public Game1()
     {
@@ -31,13 +39,14 @@ public partial class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         _content = Content;
-        Resolution = new Vector2(2222222,2,,2e.,async-.,we);
+        
         
     }
 
     protected override void Initialize()
     {
 
+        ScreenResolution = new Vector2(GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height);
         
         base.Initialize();
     }
@@ -49,13 +58,13 @@ public partial class Game1 : Game
         player.TextureScale = new Vector2(5, 5);
 
         Background = Content.Load<Texture2D>("Resources/Background");
-
+        
 
         player.Collider = new CircleCollider(player.Position, 17);
-        
+        TestBullet = new PlayerBullet(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2), 0, Content.Load<Texture2D>("Resources/fireball"), new Point(1, 1), new Vector2(0, 0.1f));
         
         RenderTarget = new RenderTarget2D(GraphicsDevice, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
-        //RenderTarget = new RenderTarget2D(GraphicsDevice, GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height);
+        //RenderTarget = new RenderTarget2D(GraphicsDevice, ScreenResolution.x, ScreenResolution.y);
 
         testShader = Content.Load<Effect>("Resources/test");
 
@@ -66,18 +75,23 @@ public partial class Game1 : Game
     protected override void Update(GameTime gameTime)
     {
         
+        Time = gameTime;
 
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
         // TODO: Add your update logic here
         player.Update();
-
+        TestBullet.Update();
         MouseState mouse = Mouse.GetState();
        
         if (mouse.LeftButton == ButtonState.Released)
         {
             player.IsAttachedToMouse = false;
+        }
+        if(MousePressed && Distance(LastMousePos, mouse.Position.ToVector2()) >= ShootVelocityTreshold)
+        {
+            //Shoot
         }
         
         
@@ -89,6 +103,16 @@ public partial class Game1 : Game
             player.Move(new Vector2(player.Speed* (float)gameTime.ElapsedGameTime.TotalSeconds, player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds) * dir);
             player.IsAttachedToMouse = true;
         }
+        else if (mouse.LeftButton == ButtonState.Pressed)
+        {
+            MousePressed = true;
+        }
+        else
+        {
+            MousePressed = false;
+        }
+
+        LastMousePos = mouse.Position.ToVector2();
 
         base.Update(gameTime);
     }
@@ -101,7 +125,7 @@ public partial class Game1 : Game
         _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
 
         _spriteBatch.Draw(Background, new Vector2(0, 0), new Color(200, 200, 200));
-
+        TestBullet.Draw(_spriteBatch);
         player.Draw(_spriteBatch);
         
 
@@ -121,17 +145,36 @@ public partial class Game1 : Game
 
     }
 
-    public static double Distance(Vector2 p1, Vector2 p2)
+    public static float Distance(Vector2 p1, Vector2 p2)
     {
-        return Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2));
+        return MathF.Sqrt(MathF.Pow(p2.X - p1.X, 2) + MathF.Pow(p2.Y - p1.Y, 2));
     }
-    public static double Distance(Point p1, Point p2)
+    public static float Distance(Point p1, Point p2)
     {
-        return Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2));
+        return MathF.Sqrt(MathF.Pow(p2.X - p1.X, 2) + MathF.Pow(p2.Y - p1.Y, 2));
+    }
+    public static float Distance(Vector2 p1)
+    {
+        return MathF.Sqrt(MathF.Pow(p1.X, 2) + MathF.Pow(p1.Y, 2));
+    }
+    public static float Distance(Point p1)
+    {
+        return MathF.Sqrt(MathF.Pow(p1.X, 2) + MathF.Pow(p1.Y, 2));
     }
 
     public static Vector2 GetTextureCenter(Texture2D texture, Vector2 offset, Vector2 Scale)
     {
         return new Vector2(offset.X + (texture.Width / 2) * Scale.X, offset.Y + (texture.Height * Scale.Y / 2));
     }
+    public static Vector2 RotationToVector(float rotation)
+    {
+        return new Vector2(MathF.Cos(rotation), MathF.Sin(rotation));
+    }
+    public static float UnsignedAngle(Vector2 from, Vector2 to)
+    {
+        float dot = Vector2.Dot(from, to);
+        float cross = from.X * to.Y - from.Y * to.X;
+        return (float)Math.Atan2(cross, dot);
+    }
+
 }

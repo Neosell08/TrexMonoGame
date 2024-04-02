@@ -22,6 +22,7 @@ namespace TrexRunner
             public Color Color;
             public Vector2 TopLeftCorner;
             Vector2 _Position;
+            
             public Vector2 Position { get { return _Position; } set { _Position = value; TopLeftCorner = value - new Vector2(Texture.Width * TextureScale.X/2, Texture.Height * TextureScale.Y/2); } }
 
 
@@ -129,7 +130,7 @@ namespace TrexRunner
     }
     interface IGameObject
     {
-
+        
         public void Update();
 
         public void Draw(SpriteBatch spriteBatch);
