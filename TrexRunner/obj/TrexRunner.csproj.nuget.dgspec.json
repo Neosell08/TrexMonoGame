@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Coding\\VS_Projects\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj": {}
+    "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj": {}
   },
   "projects": {
-    "D:\\Coding\\VS_Projects\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj": {
+    "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Coding\\VS_Projects\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj",
+        "projectUniqueName": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj",
         "projectName": "TrexRunner",
-        "projectPath": "D:\\Coding\\VS_Projects\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj",
-        "packagesPath": "C:\\Users\\Neo Sellberg\\.nuget\\packages\\",
-        "outputPath": "D:\\Coding\\VS_Projects\\TrexMonoGame\\TrexRunner\\obj\\",
+        "projectPath": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj",
+        "packagesPath": "C:\\Users\\neo.sellberg\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Neo Sellberg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\neo.sellberg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -68,7 +77,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

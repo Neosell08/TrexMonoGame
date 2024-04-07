@@ -13,17 +13,17 @@ using System.Threading.Tasks;
 
 namespace TrexRunner
 {
-    
-    class Background : IGameObject
+    [Obsolete]
+    class MovingBackground : GameObject
     {
-        Texture2D Texture;
+        
         List<Vector2> VisibleBackgrounds;
-        Vector2 _Position;
+        
         float backgroundPosX;
         float backgroundPosY;
-        public Vector2 Position { get { return _Position; } set { _Position = value; } }
-        GameWindow Window;
-        public void Update()
+        
+        
+        public override void Update()
         {
             backgroundPosX = -((Position.X - Mod(Position.X, 1920)) / 1920);
             backgroundPosY = -((Position.Y - Mod(Position.Y, 1080)) / 1080); //I don't know what this is. Beppe's code
@@ -33,34 +33,45 @@ namespace TrexRunner
             VisibleBackgrounds[2] = new Vector2(backgroundPosX, backgroundPosY - 1);
             VisibleBackgrounds[3] = new Vector2(backgroundPosX - 1, backgroundPosY - 1);
         }
-        
 
-        
-        public void Draw(SpriteBatch spritebatch)
+        protected override void OnEnterCollider(Collider collider)
+        {
+            
+        }
+        protected override void OnExitCollider(Collider collider)
+        {
+            
+        }
+        protected override void OnUpdateCollider(Collider collider)
+        {
+            
+        }
+
+        public override void Draw(SpriteBatch spritebatch, Color? color)
         {
             for (int i = 0; i < 4; i++)
             {
-                spritebatch.Draw(Texture, new Vector2(Position.X + VisibleBackgrounds[i].X * Window.ClientBounds.Width, Position.Y + VisibleBackgrounds[i].Y * Window.ClientBounds.Height), Color.White);
+                spritebatch.Draw(Textr, new Vector2(Position.X + VisibleBackgrounds[i].X * Game1.WindowResolution.X, Position.Y + VisibleBackgrounds[i].Y * Game1.WindowResolution.Y), Color.White);
             }
         }
         private static float Mod(float x, float m)
         {
             return ((x % m) + m) % m;
         }
-        public void Move(Vector2 dir)
+        public override void Move(Vector2 dir)
         {
             Position += dir;
             
         }
-        public void Move(Vector2 dir, float speed)
+        public override void Move(Vector2 dir, float speed)
         {
             dir *= speed;
             Move(dir);
         }
-        public Background(Texture2D texture, GameWindow window)
+        public MovingBackground(Texture2D texture)
         {
-            Texture = texture;
-            Window = window;
+            Textr = texture;
+            
             
         }
     }

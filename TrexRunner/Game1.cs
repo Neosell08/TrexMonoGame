@@ -13,23 +13,66 @@ namespace TrexRunner;
 public partial class Game1 : Game
 {
     private GraphicsDeviceManager _graphics;
+    /// <summary>
+    /// Main spritebatch
+    /// </summary>
     private SpriteBatch _spriteBatch;
-    Player player;
-    public static Random rng = new Random();
-    public static ContentManager _content;
-    public static GameTime Time = new GameTime();
-    public Texture2D Background;
-    public Effect testShader;
-    private RenderTarget2D RenderTarget;
-    private Boss CurBoss;
-    private bool MousePressed;
-    private Vector2 LastMousePos;
-    public static float DeltaTime;
-    private float ShootVelocityTreshold = 1;
-    private PlayerBullet TestBullet;
 
+    Player player;
+
+    /// <summary>
+    /// The game's random object
+    /// </summary>
+    public static Random rng = new Random();
+
+    public static ContentManager _content;
+    /// <summary>
+    /// Contains information about the game's time
+    /// </summary>
+    public static GameTime Time = new GameTime();
+
+    /// <summary>
+    /// Background Texture
+    /// </summary>
+    public Texture2D Background;
+
+    
+
+    /// <summary>
+    /// Buffer texture that collects other textures and then draws them collectively
+    /// </summary>
+    private RenderTarget2D RenderTarget;
+
+    /// <summary>
+    /// The boss GameObject 
+    /// </summary>
+    private Boss CurBoss;
+
+    /// <summary>
+    /// If the mouse is pressed down
+    /// </summary>
+    private bool MousePressed;
+
+    /// <summary>
+    /// The position of the mouse last frame
+    /// </summary>
+    private Vector2 LastMousePos;
+
+    /// <summary>
+    /// The Velocity of the mouse required to shoot
+    /// </summary>
+    private float ShootVelocityTreshold = 1;
+
+    private PlayerBullet TestBullet;
+    /// <summary>
+    /// Resolution of the computer screen
+    /// </summary>
     public static Vector2 ScreenResolution;
+    /// <summary>
+    /// Resolution of the game window
+    /// </summary>
     public static Vector2 WindowResolution;
+
     public List<Projectile> Projectiles;
     
     public Game1()
@@ -47,26 +90,33 @@ public partial class Game1 : Game
     {
 
         ScreenResolution = new Vector2(GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height);
-        
+        WindowResolution = new Vector2(GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height);
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        player = new Player(new Vector2(0, 0), Window, Content.Load<Texture2D>("Resources/Player"));
-        player.TextureScale = new Vector2(5, 5);
+        player = new Player(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Player"));
+        player.TextureScale = new Point(5, 5);
 
         Background = Content.Load<Texture2D>("Resources/Background");
         
 
         player.Collider = new CircleCollider(player.Position, 17);
-        TestBullet = new PlayerBullet(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2), 0, Content.Load<Texture2D>("Resources/fireball"), new Point(1, 1), new Vector2(0, 0.1f));
+        TestBullet = new PlayerBullet(
+            new Vector2(_graphics.PreferredBackBufferWidth / 2,
+            _graphics.PreferredBackBufferHeight / 2),
+            0,
+            Content.Load<Texture2D>("Resources/fireball"),
+            new Point(1, 1), 
+            new Vector2(0, -0.1f), 
+            5);
         
         RenderTarget = new RenderTarget2D(GraphicsDevice, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
-        //RenderTarget = new RenderTarget2D(GraphicsDevice, ScreenResolution.x, ScreenResolution.y);
 
-        testShader = Content.Load<Effect>("Resources/test");
+        CurBoss = new Boss(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Computer"), new Point(2, 2));
+        
 
 
         // TODO: use this.Content to load your game content here
@@ -102,6 +152,7 @@ public partial class Game1 : Game
             Vector2 dir = mouse.Position.ToVector2() - player.Position;
             player.Move(new Vector2(player.Speed* (float)gameTime.ElapsedGameTime.TotalSeconds, player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds) * dir);
             player.IsAttachedToMouse = true;
+            MousePressed = true;
         }
         else if (mouse.LeftButton == ButtonState.Pressed)
         {
@@ -127,7 +178,7 @@ public partial class Game1 : Game
         _spriteBatch.Draw(Background, new Vector2(0, 0), new Color(200, 200, 200));
         TestBullet.Draw(_spriteBatch);
         player.Draw(_spriteBatch);
-        
+        CurBoss.Draw(_spriteBatch); 
 
         _spriteBatch.End();
         //GraphicsDevice.SetRenderTarget(null);
@@ -162,7 +213,7 @@ public partial class Game1 : Game
         return MathF.Sqrt(MathF.Pow(p1.X, 2) + MathF.Pow(p1.Y, 2));
     }
 
-    public static Vector2 GetTextureCenter(Texture2D texture, Vector2 offset, Vector2 Scale)
+    public static Vector2 GetTextureCenter(Texture2D texture, Vector2 offset, Point Scale)
     {
         return new Vector2(offset.X + (texture.Width / 2) * Scale.X, offset.Y + (texture.Height * Scale.Y / 2));
     }
