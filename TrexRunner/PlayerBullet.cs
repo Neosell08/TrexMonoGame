@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
 using SharpDX.MediaFoundation;
+using Microsoft.Xna.Framework.Content;
 
 namespace TrexRunner
 {
@@ -18,16 +19,17 @@ namespace TrexRunner
         public override void Update()
         {
             Move(Velocity, Game1.Time.ElapsedGameTime.Milliseconds);
-            if (Position.X < 0 || Position.Y < 0 || Position.X > Game1.ScreenResolution.X || Position.Y > Game1.ScreenResolution.Y)
+            if ((Position.X < 0 || Position.Y < 0 || Position.X > Game1.ScreenResolution.X || Position.Y > Game1.ScreenResolution.Y) && ExplodesAtBorder)
             {
                 if (ExplodesAtBorder)
                 {
                     for (int i = 0; i < DebrisAmount; i++)
                     {
-                        
+                        new PlayerBullet(Position, Rotation, Textr, TextureScale, Game1.RotationToVector(i * 360 / DebrisAmount), 0, false);
+
                     }
                 }
-                //remove from projectilelist
+                Game1.Projectiles.Remove(this);
             }
         }
 
@@ -53,7 +55,15 @@ namespace TrexRunner
         {
             throw new NotImplementedException();
         }
-        public PlayerBullet(Vector2 pos, float rotation, Texture2D texture, Point textureScale, Vector2 velocity, int debrisAmount, bool explodesAtBorder = true)
+        public struct PlayerBulletDeathInfo
+        {
+            
+
+            int DebrisAmount;
+
+            
+        }
+        public PlayerBullet(Vector2 pos, float rotation, Texture2D texture, Point textureScale, Vector2 velocity, int deletionVar, bool explodesAtBorder = true)
         {
             Textr = texture;
             Position = pos;
@@ -64,7 +74,7 @@ namespace TrexRunner
 
             Rotation += MathF.Atan2(Velocity.Y, velocity.X); // gör så att den pekar framåt baserat på velocity
             
-            DebrisAmount = debrisAmount;
+            DebrisAmount = deletionVar;
         }
 
         

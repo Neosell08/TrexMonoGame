@@ -73,7 +73,11 @@ public partial class Game1 : Game
     /// </summary>
     public static Vector2 WindowResolution;
 
-    public List<Projectile> Projectiles;
+    /// <summary>
+    /// List of all projectiles 
+    /// </summary>
+
+    public static List<Projectile> Projectiles = new List<Projectile>();
     
     public Game1()
     {
@@ -179,6 +183,11 @@ public partial class Game1 : Game
         TestBullet.Draw(_spriteBatch);
         player.Draw(_spriteBatch);
         CurBoss.Draw(_spriteBatch); 
+
+        foreach (Projectile bullet in Projectiles)
+        {
+            bullet.Draw(_spriteBatch);
+        }
 
         _spriteBatch.End();
         //GraphicsDevice.SetRenderTarget(null);
