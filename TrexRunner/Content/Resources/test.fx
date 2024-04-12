@@ -15,7 +15,7 @@ sampler2D SpriteTextureSampler = sampler_state
 	Texture = <SpriteTexture>;
 };
 
-const float Pi2 = 6.28318530718;
+
 
 struct VertexShaderOutput
 {
@@ -31,7 +31,8 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 {
     
 	
-    return input.Color;
+    return
+    float4(1, 1, 1, 1);
     
 }
 

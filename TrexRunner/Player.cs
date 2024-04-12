@@ -19,11 +19,10 @@ namespace TrexRunner
             
             
             public Color Color;
-           
-            
-            
 
 
+            
+            
             public float Speed = 20;
             
             
@@ -37,6 +36,7 @@ namespace TrexRunner
                 Color = Color.White;
                 Textr = texture;
                 Position = pos;
+               
                 
             }
             public override void Update()
@@ -57,12 +57,7 @@ namespace TrexRunner
             }
             
 
-            public override void Draw(SpriteBatch spriteBatch, Color? color = null)
-            {
-                
-                spriteBatch.Draw(Textr, new Rectangle((int)TopLeftCorner.X, (int)TopLeftCorner.Y, Convert.ToInt32(Textr.Width * TextureScale.X), Convert.ToInt32(Textr.Height * TextureScale.Y)), Color.White);
-                
-            }
+            
 
             public override void Move(Vector2 dir)
             {
@@ -76,7 +71,10 @@ namespace TrexRunner
                 Move(dir);
             }
             
+            public void Damage()
+            {
 
+            }
            
 
             protected override void OnEnterCollider(Collider collider)
@@ -111,6 +109,7 @@ namespace TrexRunner
         public List<Collider> CheckedColliders = new List<Collider>();
         List<Collider> CollidingColliders = new List<Collider>();
         public Vector2 TopLeftCorner { get; protected set; }
+        public List<string> Tags = new List<string>();
         public virtual void Update()
         {
 
@@ -121,9 +120,9 @@ namespace TrexRunner
             color = color == null ? Color.White : color;
 
 
-            spriteBatch.Draw(Textr, new Rectangle(TopLeftCorner.ToPoint(), TextureScale), null, color.Value, Rotation, Game1.GetTextureCenter(Textr, Position, TextureScale), SpriteEffects.None, 0f);
-            
-            
+            spriteBatch.Draw(Textr, new Rectangle((int)TopLeftCorner.X, (int)TopLeftCorner.Y, Convert.ToInt32(Textr.Width * TextureScale.X), Convert.ToInt32(Textr.Height * TextureScale.Y)), null, color.Value, Rotation, Vector2.Zero, SpriteEffects.None, 0);
+
+
         }
 
 
@@ -160,6 +159,10 @@ namespace TrexRunner
 
                 }
             }
+        }
+        public void CheckColliders(Collider[] checkedColliders)
+        {
+            CheckColliders(checkedColliders.ToList());
         }
     }
     

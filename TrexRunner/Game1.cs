@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -35,6 +36,7 @@ public partial class Game1 : Game
     /// Background Texture
     /// </summary>
     public Texture2D Background;
+    Texture2D BulletTexture;
 
     
 
@@ -52,6 +54,7 @@ public partial class Game1 : Game
     /// If the mouse is pressed down
     /// </summary>
     private bool MousePressed;
+    bool MouseRecentlyPressed;
 
     /// <summary>
     /// The position of the mouse last frame
@@ -63,7 +66,11 @@ public partial class Game1 : Game
     /// </summary>
     private float ShootVelocityTreshold = 1;
 
-    private PlayerBullet TestBullet;
+    float BulletSpeed = 0.1f;
+
+    bool HasShot;
+
+   
     /// <summary>
     /// Resolution of the computer screen
     /// </summary>
@@ -78,6 +85,13 @@ public partial class Game1 : Game
     /// </summary>
 
     public static List<Projectile> Projectiles = new List<Projectile>();
+
+
+
+
+
+
+    List<GameObject> DrawingGameObjects;
     
     public Game1()
     {
@@ -105,18 +119,12 @@ public partial class Game1 : Game
         player.TextureScale = new Point(5, 5);
 
         Background = Content.Load<Texture2D>("Resources/Background");
+
+        BulletTexture = Content.Load<Texture2D>("Resources/fireball");
+        player.Collider = new CircleCollider(player.Position, 17, player);
         
 
-        player.Collider = new CircleCollider(player.Position, 17);
-        TestBullet = new PlayerBullet(
-            new Vector2(_graphics.PreferredBackBufferWidth / 2,
-            _graphics.PreferredBackBufferHeight / 2),
-            0,
-            Content.Load<Texture2D>("Resources/fireball"),
-            new Point(1, 1), 
-            new Vector2(0, -0.1f), 
-            5);
-        
+        PlayerBullet.DebrisSpeed = 0.1f;
         RenderTarget = new RenderTarget2D(GraphicsDevice, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
 
         CurBoss = new Boss(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Computer"), new Point(2, 2));
@@ -130,46 +138,94 @@ public partial class Game1 : Game
     {
         
         Time = gameTime;
-
-        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            Exit();
+        InputCheck();
 
         // TODO: Add your update logic here
         player.Update();
-        TestBullet.Update();
+        Projectile[] projectilesToBeUpdated = Projectiles.ToArray();
+
+        foreach (Projectile projectile in projectilesToBeUpdated)
+        {
+            projectile.Update();
+        }
+
+
+        LastMousePos = Mouse.GetState().Position.ToVector2();
+
+        base.Update(gameTime);
+    }
+
+
+    void InputCheck()
+    {
         MouseState mouse = Mouse.GetState();
-       
+        if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            Exit();
+
         if (mouse.LeftButton == ButtonState.Released)
         {
             player.IsAttachedToMouse = false;
         }
-        if(MousePressed && Distance(LastMousePos, mouse.Position.ToVector2()) >= ShootVelocityTreshold)
+        if (MousePressed && Distance(LastMousePos, mouse.Position.ToVector2()) >= ShootVelocityTreshold && !HasShot)
         {
-            //Shoot
-        }
-        
-        
-        
+            //Shooting
 
-        if ((mouse.LeftButton == ButtonState.Pressed && player.Collider.IsColliding(mouse.Position.ToVector2())) || player.IsAttachedToMouse) 
-        {
-            Vector2 dir = mouse.Position.ToVector2() - player.Position;
-            player.Move(new Vector2(player.Speed* (float)gameTime.ElapsedGameTime.TotalSeconds, player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds) * dir);
-            player.IsAttachedToMouse = true;
-            MousePressed = true;
+
+            Projectiles.Add(new PlayerBullet(
+            mouse.Position.ToVector2(),
+            0,
+            BulletTexture,
+            new Point(1, 1),
+            Vector2.Normalize(mouse.Position.ToVector2() - LastMousePos) * BulletSpeed,
+            new Projectile.ProjectileDeathInfo(true, false, true, 0, 11, 0).SetDebrisFreeSides(false, false, true, false)));
+            HasShot = true;
         }
-        else if (mouse.LeftButton == ButtonState.Pressed)
+
+
+        //if ((mouse.LeftButton == ButtonState.Pressed && player.Collider.IsColliding(mouse.Position.ToVector2())) || player.IsAttachedToMouse)
+        //{
+        //    Vector2 dir = mouse.Position.ToVector2() - player.Position;
+        //    player.Move(new Vector2(player.Speed * (float)Time.ElapsedGameTime.TotalSeconds, player.Speed * (float)Time.ElapsedGameTime.TotalSeconds) * dir);
+        //    player.IsAttachedToMouse = true;
+
+        //    if (!MousePressed)
+        //    {
+        //        MouseRecentlyPressed = true;
+        //    }
+        //    else
+        //    {
+        //        MouseRecentlyPressed = false;
+        //    }
+
+        //    MousePressed = true;
+        //}
+        if (mouse.LeftButton == ButtonState.Pressed)
         {
+            if (!MousePressed)
+            {
+                MouseRecentlyPressed = true;
+            }
+            else
+            {
+                MouseRecentlyPressed = false;
+            }
             MousePressed = true;
         }
         else
         {
             MousePressed = false;
+            MouseRecentlyPressed = false;
+            HasShot = false;
         }
 
-        LastMousePos = mouse.Position.ToVector2();
 
-        base.Update(gameTime);
+        if ((MouseRecentlyPressed && player.Collider.IsColliding(mouse.Position.ToVector2())) || player.IsAttachedToMouse)
+        {
+            Vector2 dir = mouse.Position.ToVector2() - player.Position;
+            player.Move(new Vector2(player.Speed * (float)Time.ElapsedGameTime.TotalSeconds, player.Speed * (float)Time.ElapsedGameTime.TotalSeconds) * dir);
+            player.IsAttachedToMouse = true;
+        }
+
     }
 
     protected override void Draw(GameTime gameTime)
@@ -180,7 +236,7 @@ public partial class Game1 : Game
         _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
 
         _spriteBatch.Draw(Background, new Vector2(0, 0), new Color(200, 200, 200));
-        TestBullet.Draw(_spriteBatch);
+        
         player.Draw(_spriteBatch);
         CurBoss.Draw(_spriteBatch); 
 

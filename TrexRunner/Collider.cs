@@ -19,6 +19,9 @@ namespace TrexRunner
         public static Texture2D PixelTexture = Game1._content.Load<Texture2D>("Resources/pixel");
         public abstract Vector2 Position {  get; set; }
 
+
+        public GameObject? Parent;
+
         public List<string> tags = new List<string>();
         
 
@@ -93,10 +96,11 @@ namespace TrexRunner
             return false;
         }
 
-        public CircleCollider(Vector2 pos, double radius)
+        public CircleCollider(Vector2 pos, double radius, GameObject parent)
         {
             Position = pos;
             Radius = radius;
+            Parent = parent;
             TopLeftCorner = new Vector2(Convert.ToInt32(pos.X-radius), Convert.ToInt32(pos.Y - radius));
         }
 
@@ -153,10 +157,11 @@ namespace TrexRunner
         }
 
 
-        public BoxCollider(Vector2 pos, int width, int height)
+        public BoxCollider(Vector2 pos, int width, int height, GameObject parent)
         {
             Rectangle = new Rectangle((int)pos.X, (int)pos.Y, width, height);
             Position = pos;
+            Parent = parent;
         }
     }
     

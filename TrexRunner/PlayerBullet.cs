@@ -13,29 +13,60 @@ namespace TrexRunner
 {
     internal class PlayerBullet : Projectile
     {
-        bool ExplodesAtBorder;
-        int DebrisAmount;
+        Projectile.ProjectileDeathInfo DeathInfo;
+        bool IsDestroyed;
+        double StartInvincibilityTimer;
+        public static float DebrisSpeed;
+        float StartRotation;
+
+
         
         public override void Update()
         {
-            Move(Velocity, Game1.Time.ElapsedGameTime.Milliseconds);
-            if ((Position.X < 0 || Position.Y < 0 || Position.X > Game1.ScreenResolution.X || Position.Y > Game1.ScreenResolution.Y) && ExplodesAtBorder)
-            {
-                if (ExplodesAtBorder)
-                {
-                    for (int i = 0; i < DebrisAmount; i++)
-                    {
-                        new PlayerBullet(Position, Rotation, Textr, TextureScale, Game1.RotationToVector(i * 360 / DebrisAmount), 0, false);
+            if (IsDestroyed) { return; }
+            
+            
 
+            StartInvincibilityTimer += Game1.Time.ElapsedGameTime.TotalSeconds;
+            
+            Move(Velocity, Game1.Time.ElapsedGameTime.Milliseconds);
+            bool isOutsideOfWindow = (Position.X < 0 || Position.Y < 0 || Position.X > Game1.WindowResolution.X || Position.Y > Game1.WindowResolution.Y);
+            if (isOutsideOfWindow && DeathInfo.DestroyAtBorder && StartInvincibilityTimer >= DeathInfo.StartInvincibilityTime) 
+            {
+                
+                if (DeathInfo.DebrisAtBorder)
+                {
+
+                   
+                    for (int i = 0; i < DeathInfo.DebrisAmount; i++)
+                    {
+                        Debug.WriteLine(i * (360 / DeathInfo.DebrisAmount));
+                        ProjectileDeathInfo deathInfo = new Projectile.ProjectileDeathInfo(true, false, false, 0, 11, 1);
+
+                        PlayerBullet playerBullet = new PlayerBullet(Position, StartRotation, Textr, TextureScale, Game1.RotationToVector(i * (360 / DeathInfo.DebrisAmount)) * DebrisSpeed, deathInfo);
+                        playerBullet.Tags.Add("debris");
+                        //IsDestroyed = true;
+
+                        Game1.Projectiles.Add(playerBullet);
                     }
                 }
                 Game1.Projectiles.Remove(this);
             }
         }
 
+        bool ShouldMakeDebris(bool debrisAtBorder, Vector2 pos) 
+        { 
+            if (!debrisAtBorder) { return false; }
+
+            if (pos.X < 0 DeathInfo.)
+            {
+
+            }
+        }
         public override void Move(Vector2 dir)
         {
             Position += dir;
+            Collider.Position += dir;
         }
 
         public override void Move(Vector2 dir, float speed)
@@ -55,26 +86,22 @@ namespace TrexRunner
         {
             throw new NotImplementedException();
         }
-        public struct PlayerBulletDeathInfo
-        {
-            
-
-            int DebrisAmount;
-
-            
-        }
-        public PlayerBullet(Vector2 pos, float rotation, Texture2D texture, Point textureScale, Vector2 velocity, int deletionVar, bool explodesAtBorder = true)
+        
+        public PlayerBullet(Vector2 pos, float rotation, Texture2D texture, Point textureScale, Vector2 velocity, ProjectileDeathInfo deathInfo)
         {
             Textr = texture;
             Position = pos;
+            Collider = new CircleCollider(Position, (Textr.Height+Textr.Width)/2, this);
+            
 
             TextureScale = textureScale;   
             Velocity = velocity;
             Rotation = rotation;
-
+            StartRotation = rotation;
             Rotation += MathF.Atan2(Velocity.Y, velocity.X); // gör så att den pekar framåt baserat på velocity
-            
-            DebrisAmount = deletionVar;
+
+            DeathInfo = deathInfo;
+
         }
 
         
@@ -87,46 +114,53 @@ namespace TrexRunner
         public Vector2 Velocity;
         Vector2 _pos;
         
-        
-        
-        
-        
+
+        public struct ProjectileDeathInfo
+        {
+            public bool DestroyAtBorder;
+            public bool DestroyAfterTime;
+            public bool DebrisAtBorder;
+            public float DeathTime;
+            public int DebrisAmount;
+            public float StartInvincibilityTime;
+            public bool DebrisFreeRight = false;
+            public bool DebrisFreeLeft = false;
+            public bool DebrisFreeTop = false;
+            public bool DebrisFreeBottom = false;
+            public ProjectileDeathInfo SetDebrisFreeSides(bool right = false, bool left = false, bool top = false, bool bottom = false)
+            {
+                DebrisFreeRight = right;
+                DebrisFreeLeft = left;
+                DebrisFreeTop = top;
+                DebrisFreeBottom = bottom;
+                return this;
+            }
+
+            public ProjectileDeathInfo(bool destroyAtBorder, bool destroyAfterTime, bool debrisAtBorder, float deathTime, int debrisAmount, float startInvincibiltyTime)
+            {
+                DestroyAfterTime = destroyAfterTime;
+                DestroyAtBorder = destroyAtBorder;
+                DeathTime = deathTime;
+                DebrisAmount = debrisAmount;
+                DebrisAtBorder = debrisAtBorder;
+                StartInvincibilityTime = startInvincibiltyTime;
+                
+            }
+
+
+        }
+
+
+
 
         public override  void Update()
         {
-            Move(Velocity * Game1.Time.ElapsedGameTime.Milliseconds);
+            Move(Velocity * Game1.Time.ElapsedGameTime.Seconds);
+            
         }
 
         
 
     }
-    class PlayerDebris: Projectile
-    {
-        public override void Move(Vector2 dir)
-        {
-
-        }
-        public override void Move(Vector2 dir, float speed)
-        {
-            
-        }
-        public override void Update()
-        {
-            
-        }
-        
-        protected override void OnUpdateCollider(Collider collider)
-        {
-            
-        }
-        protected override void OnEnterCollider(Collider collider)
-        {
-            
-        }
-        protected override void OnExitCollider(Collider collider)
-        {
-            
-        }
-
-    }
+    
 }

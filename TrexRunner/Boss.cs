@@ -8,20 +8,30 @@ using Microsoft.Xna.Framework.Input;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace TrexRunner
 {
     internal class Boss : GameObject
     {
+
+        bool IsDead;
+        
+
         public Boss(Vector2 pos, Texture2D texture, Point texturescale)
         {
             Textr = texture;
             Position = pos;
             TextureScale = texturescale;
         }
+        
         protected override void OnEnterCollider(Collider collider)
         {
-
+            if (collider.Parent is PlayerBullet playerBullet && !playerBullet.Tags.Contains("debris"))
+            {
+                IsDead = true;
+                Textr = null;
+            }
         }
         protected override void OnExitCollider(Collider collider)
         {
@@ -33,6 +43,14 @@ namespace TrexRunner
         }
         public override void Update()
         {
+            Collider[] colliders = new Collider[Game1.Projectiles.Count];
+
+            for (int i = 0; i < Game1.Projectiles.Count; i++)
+            {
+                colliders[i] = Game1.Projectiles[i].Collider;
+            }
+            CheckColliders(colliders);
+
 
         }
         public override void Move(Vector2 dir)
