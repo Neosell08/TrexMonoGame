@@ -21,28 +21,30 @@ namespace TrexRunner
             public Color Color;
 
 
-            
+            public bool IsDead;
             
             public float Speed = 20;
-            
-            
+
+            public Collider BossCollider;
 
             public bool IsAttachedToMouse;
            
 
 
-            public Player(Vector2 pos, Texture2D texture)
+            public Player(Vector2 pos, Texture2D texture, Collider bossCollider)
             {
                 Color = Color.White;
                 Textr = texture;
                 Position = pos;
                
-                
+                BossCollider = bossCollider;
             }
             public override void Update()
             {
                 SetColliderPos();
                 Color = new Color(rng.Next(0, 256), rng.Next(0, 256), rng.Next(0, 256));
+                
+
                 CheckColliders(CheckedColliders);
             }
 
@@ -71,21 +73,25 @@ namespace TrexRunner
                 Move(dir);
             }
             
-            public void Damage()
-            {
-
-            }
+            
            
 
             protected override void OnEnterCollider(Collider collider)
             {
-                
+                if (collider.Parent.Tags.Contains("debris") || collider.Parent.Tags.Contains("boss"))
+                {
+                    IsDead = true;
+
+                    if (collider.Parent is Projectile projectile)
+                    {
+                        Game1.Projectiles.Remove(projectile);
+                    }
+                }
                 
             }
             protected override void OnUpdateCollider(Collider collider)
             {
-                Debug.WriteLine(collider);
-                Debug.WriteLine(Game1.Distance(Collider.Position, collider.Position));
+               
             }
             protected override void OnExitCollider(Collider collider)
             {
@@ -106,7 +112,7 @@ namespace TrexRunner
         public Point TextureScale { get { return _TextureScale; } set { _TextureScale = value; Position = Position; } }
         public Vector2 Position { get { return _Position; } set { _Position = value; if (Textr != null) { TopLeftCorner = value - new Vector2(Textr.Width * TextureScale.X / 2, Textr.Height * TextureScale.Y / 2); } } }
         public Collider Collider;
-        public List<Collider> CheckedColliders = new List<Collider>();
+        public List<Collider> CheckedColliders = Collider.ColliderList;
         List<Collider> CollidingColliders = new List<Collider>();
         public Vector2 TopLeftCorner { get; protected set; }
         public List<string> Tags = new List<string>();

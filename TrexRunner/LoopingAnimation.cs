@@ -11,21 +11,21 @@ using SharpDX.MediaFoundation.DirectX;
 
 namespace TrexRunner
 {
-    class Animation
+    class LoopingAnimation
     {
         bool HasConstantSpeed;
         public float ConstantSpeed;
         public List<float> DynamicSpeeds;
         List<Texture2D> Frames;
 
-        public Animation(List<Texture2D> frames, float speed) 
+        public LoopingAnimation(List<Texture2D> frames, float speed) 
         {
             Frames = frames;
             ConstantSpeed = speed;
             HasConstantSpeed = true;
         }
 
-        public Animation(List<Texture2D> frames, List<float> speeds)
+        public LoopingAnimation(List<Texture2D> frames, List<float> speeds)
         {
             Frames = frames;
 

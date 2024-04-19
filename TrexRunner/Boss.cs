@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace TrexRunner
 {
-    internal class Boss : GameObject
+    public class Boss : GameObject
     {
         public bool IsWhite = true;
         float WhiteTimer;
@@ -21,14 +22,22 @@ namespace TrexRunner
         bool IsDead;
         int MaxHP;
         int HP;
-        Animation anim;
+        LoopingAnimation anim;
         float StartTime;
 
-        public Boss(Vector2 pos, List<Texture2D> frames, Point texturescale, int maxHP, float whiteDuration)
+        Vector2[] MovePoints;
+        int CurPointIndex;
+        Vector2 MoveDir;
+        float Speed;
+        float NewPointDistanceThreshold = 5f;
+        float LerpSpeed;
+
+        public Boss(Vector2 pos, List<Texture2D> frames, Point texturescale, int maxHP, float whiteDuration, Vector2[] movePoints, float speed, float turnSpeed, float newPointDistanceLimit)
         {
             Textr = frames[0];
             Position = pos;
-            
+
+            Tags.Add("boss");
 
             StartTime = (float)Game1.Time.TotalGameTime.TotalSeconds;
 
@@ -38,8 +47,12 @@ namespace TrexRunner
             HP = maxHP;
 
             this.Collider = new BoxCollider(TopLeftCorner, Textr.Width * texturescale.X, Textr.Height * texturescale.Y, this);
-            anim = new Animation(frames, 1f);
+            anim = new LoopingAnimation(frames, 1f);
             WhiteDuration = whiteDuration;
+            MovePoints = movePoints;
+            Speed = speed;
+            LerpSpeed = turnSpeed;
+            NewPointDistanceThreshold = newPointDistanceLimit;
         }
 
         protected override void OnEnterCollider(Collider collider)
@@ -70,42 +83,59 @@ namespace TrexRunner
         }
         public override void Update()
         {
-            Textr = anim.GetCurrentFrame((float)Game1.Time.TotalGameTime.TotalSeconds - StartTime);
-            Collider[] colliders = new Collider[Game1.Projectiles.Count];
-
-            for (int i = 0; i < Game1.Projectiles.Count; i++)
-            {
-                colliders[i] = Game1.Projectiles[i].Collider;
-            }
-            CheckColliders(colliders);
+            Textr = anim.GetCurrentFrame((float)Game1.Time.TotalGameTime.TotalSeconds - StartTime); 
+            CheckColliders(CheckedColliders);
 
             WhiteTimer += (float)Game1.Time.ElapsedGameTime.TotalSeconds;
-
             IsWhite = WhiteTimer < WhiteDuration;
-        }
-        public override void Move(Vector2 dir)
-        {
-            Position += dir;
-        }
-        public override void Move(Vector2 dir, float speed)
-        {
-            dir *= speed;
-            Move(dir);
+
+            Vector2 targetDir = MovePoints[CurPointIndex] - Position;
+
+            MoveDir = Vector2.Lerp(MoveDir, targetDir, LerpSpeed);
+            MoveDir.Normalize();
+            Move(MoveDir, Speed*(float)Game1.Time.ElapsedGameTime.TotalSeconds);
+            
+            if (Game1.Distance(Position, MovePoints[CurPointIndex]) < NewPointDistanceThreshold)
+            {
+                CurPointIndex = Game1.CircularClamp(CurPointIndex+1, 0, MovePoints.Length-1);
+            }
         }
 
-        public void Move(Vector2 dir, double speed)
-        {
-            dir = new Vector2((float)(dir.X * speed), (float)(dir.Y * speed));
-            Move(dir);
-        }
+
         
     }
 
 
 
 
-    public class BossAttackPattern
+    public abstract class BossAttackPattern
     {
-        
+        public float ShootDelay;
+        public Boss Parent;
+        protected double Timer;
+        public Projectile ProjectilePrefab;
+
+        public abstract void Update();
+    }
+
+    public class SphereAttack : BossAttackPattern
+    {
+        float BulletCount;
+
+        public override void Update()
+        {
+            Timer += Game1.Time.ElapsedGameTime.TotalSeconds;
+
+            if (Timer >= ShootDelay)
+            {
+                for (int i = 0; i < BulletCount; i++)
+                {
+                    
+                    //PlayerBullet playerBullet = new PlayerBullet(Position, StartRotation, Textr, TextureScale, Game1.RotationToVector(i * (360 / DeathInfo.DebrisAmount)) * DebrisSpeed, deathInfo);
+                    
+                    //Game1.Projectiles.Add(playerBullet);
+                }
+            }
+        }
     }
 }

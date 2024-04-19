@@ -16,6 +16,11 @@ namespace TrexRunner
 {
     public abstract class Collider
     {
+
+        public float Rotation;
+
+        public static List<Collider> ColliderList = new List<Collider>();
+
         public static Texture2D PixelTexture = Game1._content.Load<Texture2D>("Resources/pixel");
         public abstract Vector2 Position {  get; set; }
 
@@ -102,6 +107,7 @@ namespace TrexRunner
             Radius = radius;
             Parent = parent;
             TopLeftCorner = new Vector2(Convert.ToInt32(pos.X-radius), Convert.ToInt32(pos.Y - radius));
+            Collider.ColliderList.Add(this);
         }
 
         public override void Draw(SpriteBatch spritebatch)
@@ -122,6 +128,8 @@ namespace TrexRunner
     {
         public Rectangle Rectangle = new Rectangle();
         Vector2 _Position;
+        
+
         public override Vector2 Position { get { return _Position; } set { _Position = value; Rectangle.X = (int)value.X; Rectangle.Y = (int)value.Y; } }
         public override bool IsColliding(Vector2 pos)
         {
@@ -154,6 +162,7 @@ namespace TrexRunner
         public override void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Draw(PixelTexture, new Vector2(Rectangle.X, Rectangle.Y), null, Color.Magenta, 0, Vector2.Zero, new Vector2(Rectangle.Width, Rectangle.Height), 0, 0);
+
         }
          
 
@@ -162,6 +171,30 @@ namespace TrexRunner
             Rectangle = new Rectangle((int)Position.X - width / 2, (int)Position.Y - height / 2, width, height);
             Position = pos;
             Parent = parent;
+            Collider.ColliderList.Add(this);
+        }
+
+
+
+
+        public class CustomRect
+        {
+            float Rotation;
+            Vector2[] Points;
+            Vector2 _Position;
+            public Vector2 Position { get { return _Position; } set { _Position = value;} }
+
+            public CustomRect(Vector2 pos, float rotation, float width, float height)
+            {
+                Rotation = rotation;
+
+                Points = new Vector2[4];
+                Points[0] = new Vector2(pos.X+width/2, pos.Y +height/2);
+                Points[1] = new Vector2(pos.X+width/2, pos.Y -height/2);
+                Points[2] = new Vector2(pos.X - width / 2, pos.Y - height / 2);
+                Points[3] = new Vector2(pos.X-width/2, pos.Y +height/2);
+            } 
+            public bool Intersects()
         }
     }
     

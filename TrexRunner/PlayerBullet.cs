@@ -115,7 +115,7 @@ namespace TrexRunner
             DeathInfo = deathInfo;
 
         }
-
+        
         
     }
 
@@ -178,6 +178,16 @@ namespace TrexRunner
 
 
 
+    }
+
+    public class BossBullet : Projectile
+    {
+        public override void Update()
+        {
+            Move(Velocity);
+
+            
+        }
     }
     
 }

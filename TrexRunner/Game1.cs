@@ -49,7 +49,7 @@ public partial class Game1 : Game
     /// <summary>
     /// The boss GameObject 
     /// </summary>
-    private Boss CurBoss;
+    public Boss CurBoss;
 
 
 
@@ -89,13 +89,18 @@ public partial class Game1 : Game
 
     public static List<Projectile> Projectiles = new List<Projectile>();
 
-
-    BasicGameObject ScreenDivider;
+    public enum GameState
+    {
+        Playing,
+        Dead
+    }
+    
     Effect WhiteEffect;
 
+    public GameState CurState;
 
 
-    List<GameObject> DrawingGameObjects;
+    
     
     public Game1()
     {
@@ -120,8 +125,21 @@ public partial class Game1 : Game
 
     protected override void LoadContent()
     {
+        List<Texture2D> frames = new List<Texture2D>();
+
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile000"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile001"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile002"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile003"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile004"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile005"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile006"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile007"));
+
+        CurBoss = new Boss(new Vector2(250, 100), frames, new Point(2, 2), 20, 1, new Vector2[4] { new Vector2(100, 100), new Vector2(100, 200), new Vector2(350, 100), new Vector2(350, 200)}, 200, 0.004f, 5);
+
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        player = new Player(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Player"));
+        player = new Player(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Player"), CurBoss.Collider);
         player.TextureScale = new Point(5, 5);
 
         Background = Content.Load<Texture2D>("Resources/Background");
@@ -136,18 +154,7 @@ public partial class Game1 : Game
 
 
 
-        List<Texture2D> frames = new List<Texture2D>(); 
         
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile000"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile001"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile002"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile003"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile004"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile005"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile006"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile007"));
-
-        CurBoss = new Boss(new Vector2(250, 100), frames, new Point(2, 2), 20, 1);
         
 
 
@@ -322,6 +329,30 @@ public partial class Game1 : Game
         float dot = Vector2.Dot(from, to);
         float cross = from.X * to.Y - from.Y * to.X;
         return (float)Math.Atan2(cross, dot);
+    }
+    public static float CircularClamp(float value, float min, float max)
+    {
+        if (value < min)
+        {
+            return max;
+        }
+        else if (value > max)
+        {
+            return min;
+        }
+        return value;
+    }
+    public static int CircularClamp(int value, int min, int max)
+    {
+        if (value <  min)
+        {
+            return max;
+        }
+        else if (value > max)
+        {
+            return min;
+        }
+        return value;
     }
 
 }
