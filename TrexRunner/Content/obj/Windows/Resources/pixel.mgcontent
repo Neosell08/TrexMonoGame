@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/Coding/VS_Projects/TrexMonoGame/TrexRunner/Content/Resources/pixel.png</SourceFile>
-  <SourceTime>2024-03-05T18:30:51.932837+01:00</SourceTime>
-  <DestFile>D:/Coding/VS_Projects/TrexMonoGame/TrexRunner/Content/bin/Windows/Resources/pixel.xnb</DestFile>
-  <DestTime>2024-03-24T15:32:23.1474266+01:00</DestTime>
+  <SourceFile>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/pixel.png</SourceFile>
+  <SourceTime>2024-03-04T12:19:23.1529212+01:00</SourceTime>
+  <DestFile>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/bin/Windows/Resources/pixel.xnb</DestFile>
+  <DestTime>2024-04-18T12:37:24.7647262+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

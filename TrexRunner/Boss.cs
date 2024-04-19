@@ -14,24 +14,51 @@ namespace TrexRunner
 {
     internal class Boss : GameObject
     {
+        public bool IsWhite = true;
+        float WhiteTimer;
+        float WhiteDuration;
 
         bool IsDead;
-        
+        int MaxHP;
+        int HP;
+        Animation anim;
+        float StartTime;
 
-        public Boss(Vector2 pos, Texture2D texture, Point texturescale)
+        public Boss(Vector2 pos, List<Texture2D> frames, Point texturescale, int maxHP, float whiteDuration)
         {
-            Textr = texture;
+            Textr = frames[0];
             Position = pos;
+            
+
+            StartTime = (float)Game1.Time.TotalGameTime.TotalSeconds;
+
+            
             TextureScale = texturescale;
+            MaxHP = maxHP;
+            HP = maxHP;
+
+            this.Collider = new BoxCollider(TopLeftCorner, Textr.Width * texturescale.X, Textr.Height * texturescale.Y, this);
+            anim = new Animation(frames, 1f);
+            WhiteDuration = whiteDuration;
         }
-        
+
         protected override void OnEnterCollider(Collider collider)
         {
             if (collider.Parent is PlayerBullet playerBullet && !playerBullet.Tags.Contains("debris"))
             {
-                IsDead = true;
-                Textr = null;
+                Game1.Projectiles.Remove(playerBullet);
+                HP--;
+                WhiteTimer = 0;
+
+                if (HP <= 0) {
+                    IsDead = true;
+                    Textr = null;
+                    this.Collider = null;
+                }
+
             }
+
+
         }
         protected override void OnExitCollider(Collider collider)
         {
@@ -43,6 +70,7 @@ namespace TrexRunner
         }
         public override void Update()
         {
+            Textr = anim.GetCurrentFrame((float)Game1.Time.TotalGameTime.TotalSeconds - StartTime);
             Collider[] colliders = new Collider[Game1.Projectiles.Count];
 
             for (int i = 0; i < Game1.Projectiles.Count; i++)
@@ -51,7 +79,9 @@ namespace TrexRunner
             }
             CheckColliders(colliders);
 
+            WhiteTimer += (float)Game1.Time.ElapsedGameTime.TotalSeconds;
 
+            IsWhite = WhiteTimer < WhiteDuration;
         }
         public override void Move(Vector2 dir)
         {
@@ -68,6 +98,14 @@ namespace TrexRunner
             dir = new Vector2((float)(dir.X * speed), (float)(dir.Y * speed));
             Move(dir);
         }
+        
+    }
+
+
+
+
+    public class BossAttackPattern
+    {
         
     }
 }

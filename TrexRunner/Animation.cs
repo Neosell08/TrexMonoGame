@@ -14,16 +14,17 @@ namespace TrexRunner
     class Animation
     {
         bool HasConstantSpeed;
-        float ConstantSpeed;
-        List<float> DynamicSpeeds;
+        public float ConstantSpeed;
+        public List<float> DynamicSpeeds;
         List<Texture2D> Frames;
 
         public Animation(List<Texture2D> frames, float speed) 
         {
             Frames = frames;
             ConstantSpeed = speed;
-            bool HasConstantSpeed = true;
+            HasConstantSpeed = true;
         }
+
         public Animation(List<Texture2D> frames, List<float> speeds)
         {
             Frames = frames;
@@ -36,23 +37,23 @@ namespace TrexRunner
             DynamicSpeeds = speeds;
             bool HasConstantSpeed = false;
         }
-        public Animation(List<float> speeds)
-        {
-            DynamicSpeeds = speeds;
-            bool HasConstantSpeed = false;
-        }
-        public Animation(float speed)
-        {
-            ConstantSpeed = speed;
-            bool HasConstantSpeed = true;
-        }
+        //public Animation(List<float> speeds)
+        //{
+        //    DynamicSpeeds = speeds;
+        //    bool HasConstantSpeed = false;
+        //}
+        //public Animation(float speed)
+        //{
+        //    ConstantSpeed = speed;
+        //    bool HasConstantSpeed = true;
+        //}
 
 
         public Texture2D GetCurrentFrame(float time)
         {
             if (HasConstantSpeed)
             {
-                return Frames[(int)Math.Floor(time % ConstantSpeed)];
+                return Frames[(int)Math.Floor((time*ConstantSpeed%1)*Frames.Count)];
             }
             else
             {
@@ -68,7 +69,7 @@ namespace TrexRunner
                         time -= DynamicSpeeds[i];
                     }
                 }
-                throw new InvalidOperationException("Something went wrong");
+                throw new InvalidOperationException("Couldn't get dynamic frame");
             }
 
         }

@@ -117,24 +117,38 @@ namespace TrexRunner
 
         public virtual void Draw(SpriteBatch spriteBatch, Color? color = null)
         {
+            if (Textr == null || TextureScale == Point.Zero) { return; }
+
+
             color = color == null ? Color.White : color;
-
-
             spriteBatch.Draw(Textr, new Rectangle((int)TopLeftCorner.X, (int)TopLeftCorner.Y, Convert.ToInt32(Textr.Width * TextureScale.X), Convert.ToInt32(Textr.Height * TextureScale.Y)), null, color.Value, Rotation, Vector2.Zero, SpriteEffects.None, 0);
+            
+            
 
 
         }
 
 
 
-        public abstract void Move(Vector2 dir);
+        public virtual void Move(Vector2 dir)
+        {
+            Position += dir;
+
+            if (Collider != null)
+            {
+                Collider.Position += dir;
+            }
+        }
 
 
-        public abstract void Move(Vector2 dir, float speed);
+        public virtual void Move(Vector2 dir, float speed)
+        {
+            Move(dir * speed);
+        }
 
-        protected abstract void OnEnterCollider(Collider collider);
-        protected abstract void OnUpdateCollider(Collider collider);
-        protected abstract void OnExitCollider(Collider collider);
+        protected virtual void OnEnterCollider(Collider collider) { }
+        protected virtual void OnUpdateCollider(Collider collider) { }
+        protected virtual void OnExitCollider(Collider collider) { }
         public void CheckColliders(List<Collider> checkedColliders)
         {
             
@@ -163,6 +177,18 @@ namespace TrexRunner
         public void CheckColliders(Collider[] checkedColliders)
         {
             CheckColliders(checkedColliders.ToList());
+        }
+    }
+
+
+    public class BasicGameObject : GameObject
+    {
+        public BasicGameObject(Vector2 pos, float rotation, Texture2D texture, Point textureScale)
+        {
+            Position = pos;
+            Rotation = rotation;
+            Textr = texture;
+            TextureScale = textureScale;
         }
     }
     

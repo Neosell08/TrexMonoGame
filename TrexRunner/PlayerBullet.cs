@@ -31,13 +31,11 @@ namespace TrexRunner
             
             Move(Velocity, Game1.Time.ElapsedGameTime.Milliseconds);
             bool isOutsideOfWindow = (Position.X < 0 || Position.Y < 0 || Position.X > Game1.WindowResolution.X || Position.Y > Game1.WindowResolution.Y);
+
             if (isOutsideOfWindow && DeathInfo.DestroyAtBorder && StartInvincibilityTimer >= DeathInfo.StartInvincibilityTime) 
             {
-                
-                if (DeathInfo.DebrisAtBorder)
+                if (ShouldMakeDebris(DeathInfo.DebrisAtBorder, Position))
                 {
-
-                   
                     for (int i = 0; i < DeathInfo.DebrisAmount; i++)
                     {
                         Debug.WriteLine(i * (360 / DeathInfo.DebrisAmount));
@@ -58,10 +56,24 @@ namespace TrexRunner
         { 
             if (!debrisAtBorder) { return false; }
 
-            if (pos.X < 0 DeathInfo.)
+            if (pos.X < 0)
             {
-
+                return !DeathInfo.DebrisFreeLeft;
             }
+            else if (pos.Y < 0)
+            {
+                return !DeathInfo.DebrisFreeTop;
+            }
+            else if (pos.X > Game1.WindowResolution.X)
+            {
+                return !DeathInfo.DebrisFreeRight;
+            }
+            else if (pos.Y > Game1.WindowResolution.Y)
+            {
+                return !DeathInfo.DebrisFreeBottom;
+            }
+
+            return false;
         }
         public override void Move(Vector2 dir)
         {
@@ -91,7 +103,7 @@ namespace TrexRunner
         {
             Textr = texture;
             Position = pos;
-            Collider = new CircleCollider(Position, (Textr.Height+Textr.Width)/2, this);
+            Collider = new CircleCollider(Position, (Textr.Height+Textr.Width)/4, this);
             
 
             TextureScale = textureScale;   
@@ -159,7 +171,12 @@ namespace TrexRunner
             
         }
 
-        
+        public override void Move(Vector2 dir)
+        {
+            base.Move(dir);
+        }
+
+
 
     }
     

@@ -125,3 +125,11 @@ D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\R
 D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\test.xnb
 D:\Coding\VS_Projects\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\fireball.xnb
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\fireball.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile000.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile001.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile002.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile003.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile004.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile005.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile006.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile007.xnb

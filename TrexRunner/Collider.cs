@@ -153,13 +153,13 @@ namespace TrexRunner
         }
         public override void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(PixelTexture, Position, null, Color.Magenta, 0, Vector2.Zero, new Vector2(Rectangle.Width, Rectangle.Height), 0, 0);
+            spritebatch.Draw(PixelTexture, new Vector2(Rectangle.X, Rectangle.Y), null, Color.Magenta, 0, Vector2.Zero, new Vector2(Rectangle.Width, Rectangle.Height), 0, 0);
         }
-
+         
 
         public BoxCollider(Vector2 pos, int width, int height, GameObject parent)
         {
-            Rectangle = new Rectangle((int)pos.X, (int)pos.Y, width, height);
+            Rectangle = new Rectangle((int)Position.X - width / 2, (int)Position.Y - height / 2, width, height);
             Position = pos;
             Parent = parent;
         }

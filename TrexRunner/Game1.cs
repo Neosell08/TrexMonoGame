@@ -18,6 +18,7 @@ public partial class Game1 : Game
     /// Main spritebatch
     /// </summary>
     private SpriteBatch _spriteBatch;
+    
 
     Player player;
 
@@ -50,6 +51,8 @@ public partial class Game1 : Game
     /// </summary>
     private Boss CurBoss;
 
+
+
     /// <summary>
     /// If the mouse is pressed down
     /// </summary>
@@ -64,9 +67,9 @@ public partial class Game1 : Game
     /// <summary>
     /// The Velocity of the mouse required to shoot
     /// </summary>
-    private float ShootVelocityTreshold = 1;
+    private float ShootVelocityTreshold = 35;
 
-    float BulletSpeed = 0.1f;
+    float BulletSpeed = 0.4f;
 
     bool HasShot;
 
@@ -87,7 +90,8 @@ public partial class Game1 : Game
     public static List<Projectile> Projectiles = new List<Projectile>();
 
 
-
+    BasicGameObject ScreenDivider;
+    Effect WhiteEffect;
 
 
 
@@ -100,6 +104,8 @@ public partial class Game1 : Game
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         _content = Content;
+        _graphics.PreferredBackBufferHeight = 800;
+        _graphics.PreferredBackBufferWidth = 480;
         
         
     }
@@ -108,7 +114,7 @@ public partial class Game1 : Game
     {
 
         ScreenResolution = new Vector2(GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height);
-        WindowResolution = new Vector2(GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height);
+        WindowResolution = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
         base.Initialize();
     }
 
@@ -121,13 +127,27 @@ public partial class Game1 : Game
         Background = Content.Load<Texture2D>("Resources/Background");
 
         BulletTexture = Content.Load<Texture2D>("Resources/fireball");
-        player.Collider = new CircleCollider(player.Position, 17, player);
+        player.Collider = new CircleCollider(player.Position, player.TextureScale.X * player.Textr.Width/2, player);
         
+        WhiteEffect = Content.Load<Effect>("Resources/test");
 
         PlayerBullet.DebrisSpeed = 0.1f;
         RenderTarget = new RenderTarget2D(GraphicsDevice, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
 
-        CurBoss = new Boss(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Computer"), new Point(2, 2));
+
+
+        List<Texture2D> frames = new List<Texture2D>(); 
+        
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile000"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile001"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile002"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile003"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile004"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile005"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile006"));
+        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile007"));
+
+        CurBoss = new Boss(new Vector2(250, 100), frames, new Point(2, 2), 20, 1);
         
 
 
@@ -148,7 +168,9 @@ public partial class Game1 : Game
         {
             projectile.Update();
         }
-
+        
+        CurBoss.Update();
+        
 
         LastMousePos = Mouse.GetState().Position.ToVector2();
 
@@ -166,7 +188,7 @@ public partial class Game1 : Game
         {
             player.IsAttachedToMouse = false;
         }
-        if (MousePressed && Distance(LastMousePos, mouse.Position.ToVector2()) >= ShootVelocityTreshold && !HasShot)
+        if (MousePressed && Distance(LastMousePos, mouse.Position.ToVector2()) >= ShootVelocityTreshold && !HasShot && !player.IsAttachedToMouse)
         {
             //Shooting
 
@@ -230,23 +252,32 @@ public partial class Game1 : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Transparent);
+        RenderTarget2D renderTarget = new RenderTarget2D(_graphics.GraphicsDevice, (int)WindowResolution.X, (int)WindowResolution.Y);
+        //GraphicsDevice.SetRenderTarget(renderTarget);
+        GraphicsDevice.Clear(Color.Transparent);
+
+
         GraphicsDevice.SetRenderTarget(null);
 
         _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
 
         _spriteBatch.Draw(Background, new Vector2(0, 0), new Color(200, 200, 200));
-        
         player.Draw(_spriteBatch);
-        CurBoss.Draw(_spriteBatch); 
-
         foreach (Projectile bullet in Projectiles)
         {
             bullet.Draw(_spriteBatch);
         }
 
+        //_spriteBatch.Draw(renderTarget, new Vector2(0, 0), Color.White);
+       
         _spriteBatch.End();
         //GraphicsDevice.SetRenderTarget(null);
+        _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, CurBoss.IsWhite ? WhiteEffect : null);
+
+        CurBoss.Draw(_spriteBatch);
+
+        _spriteBatch.End();
         //_spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, testShader);
 
         //_spriteBatch.Draw(RenderTarget, new Rectangle(0, 0, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight), Color.White);
