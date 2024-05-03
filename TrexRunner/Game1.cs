@@ -7,12 +7,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
+using static TrexRunner.BoxCollider;
 
 
 namespace TrexRunner;
 
 public partial class Game1 : Game
 {
+    
+
     private GraphicsDeviceManager _graphics;
     /// <summary>
     /// Main spritebatch
@@ -92,14 +95,17 @@ public partial class Game1 : Game
     public enum GameState
     {
         Playing,
-        Dead
+        Dead,
+        MainMenu
     }
     
     Effect WhiteEffect;
 
     public GameState CurState;
 
+    
 
+   
     
     
     public Game1()
@@ -120,11 +126,15 @@ public partial class Game1 : Game
 
         ScreenResolution = new Vector2(GraphicsDevice.DisplayMode.Width, GraphicsDevice.DisplayMode.Height);
         WindowResolution = new Vector2(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+        
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
+        CustomRect.Textr = Content.Load<Texture2D>("Resources/Circle");
+
+
         List<Texture2D> frames = new List<Texture2D>();
 
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile000"));
@@ -135,11 +145,12 @@ public partial class Game1 : Game
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile005"));
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile006"));
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile007"));
+        //BossAttackPattern attackPattern = new SphereAttack();
 
-        CurBoss = new Boss(new Vector2(250, 100), frames, new Point(2, 2), 20, 1, new Vector2[4] { new Vector2(100, 100), new Vector2(100, 200), new Vector2(350, 100), new Vector2(350, 200)}, 200, 0.004f, 5);
+        CurBoss = new Boss(new Vector2(250, 100), frames, new Point(2, 2), 20, 1, new Vector2[4] { new Vector2(100, 100), new Vector2(100, 200), new Vector2(350, 100), new Vector2(350, 200)}, 200, 0.004f, 5, 55);
 
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        player = new Player(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Player"), CurBoss.Collider);
+        player = new Player(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Player"));
         player.TextureScale = new Point(5, 5);
 
         Background = Content.Load<Texture2D>("Resources/Background");
@@ -151,14 +162,8 @@ public partial class Game1 : Game
 
         PlayerBullet.DebrisSpeed = 0.1f;
         RenderTarget = new RenderTarget2D(GraphicsDevice, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight);
+            
 
-
-
-        
-        
-
-
-        // TODO: use this.Content to load your game content here
     }
 
     protected override void Update(GameTime gameTime)
@@ -195,7 +200,7 @@ public partial class Game1 : Game
         {
             player.IsAttachedToMouse = false;
         }
-        if (MousePressed && Distance(LastMousePos, mouse.Position.ToVector2()) >= ShootVelocityTreshold && !HasShot && !player.IsAttachedToMouse)
+        if (MousePressed && MathN.Distance(LastMousePos, mouse.Position.ToVector2()) >= ShootVelocityTreshold && !HasShot && !player.IsAttachedToMouse)
         {
             //Shooting
 
@@ -269,7 +274,7 @@ public partial class Game1 : Game
 
         _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
 
-        _spriteBatch.Draw(Background, new Vector2(0, 0), new Color(200, 200, 200));
+        _spriteBatch.Draw(Background, new Vector2(0, 0), new Color(100, 150, 100));
         player.Draw(_spriteBatch);
         foreach (Projectile bullet in Projectiles)
         {
@@ -278,13 +283,15 @@ public partial class Game1 : Game
 
         //_spriteBatch.Draw(renderTarget, new Vector2(0, 0), Color.White);
        
+        
         _spriteBatch.End();
         //GraphicsDevice.SetRenderTarget(null);
         _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, CurBoss.IsWhite ? WhiteEffect : null);
-
+        
         CurBoss.Draw(_spriteBatch);
 
         _spriteBatch.End();
+
         //_spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, testShader);
 
         //_spriteBatch.Draw(RenderTarget, new Rectangle(0, 0, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight), Color.White);
@@ -292,12 +299,19 @@ public partial class Game1 : Game
         //_spriteBatch.End();
 
         // TODO: Add your drawing code here
-        
+
         base.Draw(gameTime);
 
 
-
+        
     }
+
+}
+
+public static class MathN
+{
+    public const double DegreeToRadian = Math.PI / 180;
+    public const double RadianToDegree = 1 / (Math.PI / 180);
 
     public static float Distance(Vector2 p1, Vector2 p2)
     {
@@ -344,7 +358,7 @@ public partial class Game1 : Game
     }
     public static int CircularClamp(int value, int min, int max)
     {
-        if (value <  min)
+        if (value < min)
         {
             return max;
         }
@@ -354,5 +368,70 @@ public partial class Game1 : Game
         }
         return value;
     }
+    public static Vector2 LinearFunctionFromPoints(Vector2 p1, Vector2 p2)
+    {
+        float k;
 
+        if (p1.Y - p2.Y == 0) { k = 0; } // straight line along the x axis
+        else if (p1.X - p2.X == 0) { return new Vector2(float.PositiveInfinity, 0f); } // straight line along the y axis
+        else { k = (p1.Y - p2.Y) / (p1.X - p2.X); }
+        
+        float m = p1.Y - k * p1.X;
+        return new Vector2(k, m);
+    }
+    public static Vector2 LineCollision(Vector2 l1, Vector2 l2)
+    {
+        float x = (l2.Y - l1.Y) / (l1.X - l2.X);
+        float y = l1.X * x + l1.Y;
+
+        return new Vector2(x, y);
+    }
+    public static bool IsOnLine(Vector2 l, Vector2 p)
+    {
+        return IsInsideRange(l.X * p.X + l.Y, p.Y+0.001f, p.Y - 0.001f);
+    }
+    public static bool IsInsideRange(float value, float n1, float n2)
+    {
+        return value >= (n1 > n2 ? n2 : n1) && value < (n1 > n2 ? n1 : n2);
+    }
+    public static bool IsInsideRange(float v1, float v2, float n1, float n2)
+    {
+        return MathF.Min(v1, v2) <= MathF.Max(n1, n2) && MathF.Max(v1, v2) >= MathF.Min(n1, n2);
+    }
+    public static float LinearFunction(float x, Vector2 Line)
+    {
+        return Line.X * x + Line.Y;
+    }
+    public static float ReverseLinearFunction(float y, Vector2 line)
+    {
+        return (line.Y - y) / -line.X;
+    }
+
+    /// <summary>
+    /// Rotates a vector around the origin (0, 0)
+    /// </summary>
+    /// <param name="vector">Vector originating at (0, 0)</param>
+    /// <param name="angle">Angle in radians</param>
+    /// <returns>Rotated vector</returns>
+    public static Vector2 RotateVectorRad(Vector2 vector, float angle)
+    {
+        return new Vector2(vector.X * MathF.Cos(angle) - vector.Y * MathF.Sin(angle), vector.X * MathF.Sin(angle) + vector.Y * MathF.Cos(angle));
+    }
+    /// <summary>
+    /// Rotates a vector around the origin (0, 0)
+    /// </summary>
+    /// <param name="vector">Vector originating at (0, 0)</param>
+    /// <param name="angle">Angle in degrees</param>
+    /// <returns>Rotated vector</returns>
+    public static Vector2 RotateVectorDeg(Vector2 vector, float angle)
+    {
+        return RotateVectorRad(vector, (float)(angle * DegreeToRadian));
+    }
+
+    
 }
+
+
+
+
+

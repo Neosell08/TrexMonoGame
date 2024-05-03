@@ -10,18 +10,22 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using static TrexRunner.Game1;
+using TrexRunner;
+using System.Security.Cryptography.X509Certificates;
 
 namespace TrexRunner
 {
     public class Boss : GameObject
     {
-        public bool IsWhite = true;
+        public bool IsWhite;
         float WhiteTimer;
         float WhiteDuration;
 
         bool IsDead;
         int MaxHP;
         int HP;
+
         LoopingAnimation anim;
         float StartTime;
 
@@ -32,7 +36,9 @@ namespace TrexRunner
         float NewPointDistanceThreshold = 5f;
         float LerpSpeed;
 
-        public Boss(Vector2 pos, List<Texture2D> frames, Point texturescale, int maxHP, float whiteDuration, Vector2[] movePoints, float speed, float turnSpeed, float newPointDistanceLimit)
+        public BossAttackPattern AttackPattern;
+
+        public Boss(Vector2 pos, List<Texture2D> frames, Point texturescale, int maxHP, float whiteDuration, Vector2[] movePoints, float speed, float turnSpeed, float newPointDistanceLimit, float ColliderRadius)
         {
             Textr = frames[0];
             Position = pos;
@@ -41,25 +47,27 @@ namespace TrexRunner
 
             StartTime = (float)Game1.Time.TotalGameTime.TotalSeconds;
 
-            
+
             TextureScale = texturescale;
             MaxHP = maxHP;
             HP = maxHP;
 
-            this.Collider = new BoxCollider(TopLeftCorner, Textr.Width * texturescale.X, Textr.Height * texturescale.Y, this);
+            Collider = new CircleCollider(pos, ColliderRadius, this);
             anim = new LoopingAnimation(frames, 1f);
             WhiteDuration = whiteDuration;
+            WhiteTimer = whiteDuration;
             MovePoints = movePoints;
             Speed = speed;
             LerpSpeed = turnSpeed;
             NewPointDistanceThreshold = newPointDistanceLimit;
+            
         }
 
         protected override void OnEnterCollider(Collider collider)
         {
             if (collider.Parent is PlayerBullet playerBullet && !playerBullet.Tags.Contains("debris"))
             {
-                Game1.Projectiles.Remove(playerBullet);
+                playerBullet.Remove();
                 HP--;
                 WhiteTimer = 0;
 
@@ -68,10 +76,11 @@ namespace TrexRunner
                     Textr = null;
                     this.Collider = null;
                 }
-
             }
-
-
+            else if (collider.Parent is Player plr)
+            {
+                plr.Kill();
+            }
         }
         protected override void OnExitCollider(Collider collider)
         {
@@ -79,10 +88,11 @@ namespace TrexRunner
         }
         protected override void OnUpdateCollider(Collider collider)
         {
-
+            
         }
         public override void Update()
         {
+            //Debug.WriteLine("Hello");
             Textr = anim.GetCurrentFrame((float)Game1.Time.TotalGameTime.TotalSeconds - StartTime); 
             CheckColliders(CheckedColliders);
 
@@ -95,10 +105,15 @@ namespace TrexRunner
             MoveDir.Normalize();
             Move(MoveDir, Speed*(float)Game1.Time.ElapsedGameTime.TotalSeconds);
             
-            if (Game1.Distance(Position, MovePoints[CurPointIndex]) < NewPointDistanceThreshold)
+            if (MathN.Distance(Position, MovePoints[CurPointIndex]) < NewPointDistanceThreshold)
             {
-                CurPointIndex = Game1.CircularClamp(CurPointIndex+1, 0, MovePoints.Length-1);
+                CurPointIndex = MathN.CircularClamp(CurPointIndex+1, 0, MovePoints.Length-1);
             }
+            if (AttackPattern != null)
+            {
+                AttackPattern.Update();
+            }
+            
         }
 
 
@@ -112,15 +127,19 @@ namespace TrexRunner
     {
         public float ShootDelay;
         public Boss Parent;
+        public float ProjectileSpeed;
         protected double Timer;
         public Projectile ProjectilePrefab;
+        public Texture2D Textr;
+        public Point TextureScale;
 
         public abstract void Update();
     }
 
     public class SphereAttack : BossAttackPattern
     {
-        float BulletCount;
+        int BulletCount;
+        
 
         public override void Update()
         {
@@ -130,12 +149,47 @@ namespace TrexRunner
             {
                 for (int i = 0; i < BulletCount; i++)
                 {
-                    
-                    //PlayerBullet playerBullet = new PlayerBullet(Position, StartRotation, Textr, TextureScale, Game1.RotationToVector(i * (360 / DeathInfo.DebrisAmount)) * DebrisSpeed, deathInfo);
-                    
-                    //Game1.Projectiles.Add(playerBullet);
+                    Projectile.ProjectileDeathInfo death = new Projectile.ProjectileDeathInfo(true, false, false, 0, 0, 1);
+
+                    BossProjectile prj = new BossProjectile(death, Parent.Position, MathN.RotationToVector(i * (360 / BulletCount)) * ProjectileSpeed, 0, Textr, TextureScale);
+
+                    Game1.Projectiles.Add(prj);
                 }
             }
         }
+        public SphereAttack(float shootDelay, int bulletCount, Boss parent, Texture2D textr, Point textureScale)
+        {
+            ShootDelay = shootDelay;
+            BulletCount = bulletCount;
+            Parent = parent;
+            Textr = textr;
+            TextureScale = textureScale;
+        }
     }
+}
+
+public class BossProjectile: Projectile
+{
+    
+    public BossProjectile(ProjectileDeathInfo deathInfo, Vector2 pos, Vector2 velocity, float rotation, Texture2D textr, Point textureScale)
+    {
+        DeathInfo = deathInfo;
+        Velocity = velocity;
+        TextureScale = textureScale;
+        Rotation = rotation;
+        Textr = textr;
+        Position = pos;
+
+        Rotation += MathF.Atan2(velocity.Y, velocity.X);
+    }
+    protected override void OnEnterCollider(Collider collider)
+    {
+        if (collider.Parent is Player plr)
+        {
+            plr.Kill();
+        }
+    }
+
+
+
 }
