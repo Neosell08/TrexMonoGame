@@ -38,14 +38,26 @@ namespace TrexRunner
 
             public void Kill()
             {
-
+                Game1.SetState(GameState.Dead);
             }
 
             public override void Update()
             {
                 SetColliderPos();
                 Color = new Color(rng.Next(0, 256), rng.Next(0, 256), rng.Next(0, 256));
-                
+
+                CheckedColliders = new List<Collider>();
+
+                List<Projectile> collidingProjectiles = Game1.Projectiles.Where<Projectile>((n) => { return n is BossProjectile || n.Tags.Contains("debris"); }).ToList();
+                foreach (Projectile proj in collidingProjectiles)
+                {
+                    if (proj.Collider != null)
+                    {
+                        CheckedColliders.Add(proj.Collider);
+                    }
+                    
+                }
+                CheckedColliders.Add(Game1.CurBoss.Collider);
 
                 CheckColliders(CheckedColliders);
             }
@@ -80,16 +92,11 @@ namespace TrexRunner
 
             protected override void OnEnterCollider(Collider collider)
             {
-                if (collider.Parent.Tags.Contains("debris") || collider.Parent.Tags.Contains("boss"))
+                Kill();
+                if (collider.Parent is Projectile projectile)
                 {
-                    IsDead = true;
-
-                    if (collider.Parent is Projectile projectile)
-                    {
-                        Game1.Projectiles.Remove(projectile);
-                    }
+                    Projectiles.Remove(projectile);
                 }
-                
             }
             protected override void OnUpdateCollider(Collider collider)
             {

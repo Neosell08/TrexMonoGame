@@ -155,7 +155,7 @@ namespace TrexRunner
 
         public override void Update()
         {
-            Move(Velocity * Game1.Time.ElapsedGameTime.Seconds);
+            Move(Velocity * (float)Game1.Time.ElapsedGameTime.TotalSeconds);
             
         }
 

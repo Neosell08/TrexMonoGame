@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|c:\\users\\neo.sellberg\\documents\\github\\trexmonogame\\trexrunner\\content\\resources\\crtshader.fx||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\content\\resources\\crtshader.fx||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|c:\\users\\neo.sellberg\\documents\\github\\trexmonogame\\trexrunner\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\boss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,20 +31,8 @@
       "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\playerbullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|c:\\users\\neo.sellberg\\documents\\github\\trexmonogame\\trexrunner\\collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\collider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|c:\\users\\neo.sellberg\\documents\\github\\trexmonogame\\trexrunner\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\movingbackground.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\movingbackground.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\content\\resources\\test.fx||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -49,17 +53,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Game1.cs",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Game1.cs",
               "RelativeDocumentMoniker": "TrexRunner\\Game1.cs",
               "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Game1.cs",
               "RelativeToolTip": "TrexRunner\\Game1.cs",
-              "ViewState": "AQIAAIYAAAAAAAAAAAAvwJMAAAAKAAAA",
+              "ViewState": "AQIAAIgAAAAAAAAAAAAWwJgAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-19T09:40:14.591Z",
               "IsPinned": true,
@@ -67,13 +71,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "Player.cs",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Player.cs",
               "RelativeDocumentMoniker": "TrexRunner\\Player.cs",
               "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Player.cs",
               "RelativeToolTip": "TrexRunner\\Player.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAA2wCgAAAAAAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAA4wCgAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-19T09:31:55.416Z",
               "IsPinned": true,
@@ -101,59 +105,70 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "CRTShader.fx",
+              "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Content\\Resources\\CRTShader.fx",
+              "RelativeDocumentMoniker": "TrexRunner\\Content\\Resources\\CRTShader.fx",
+              "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Content\\Resources\\CRTShader.fx",
+              "RelativeToolTip": "TrexRunner\\Content\\Resources\\CRTShader.fx",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAFsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-04T18:20:52.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Boss.cs",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Boss.cs",
               "RelativeDocumentMoniker": "TrexRunner\\Boss.cs",
               "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Boss.cs",
               "RelativeToolTip": "TrexRunner\\Boss.cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAAA+wHEAAAAnAAAA",
+              "ViewState": "AQIAAKoAAAAAAAAAAAAiwLYAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-22T12:52:53.684Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-22T12:52:53.684Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "PlayerBullet.cs",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\PlayerBullet.cs",
               "RelativeDocumentMoniker": "TrexRunner\\PlayerBullet.cs",
               "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\PlayerBullet.cs",
               "RelativeToolTip": "TrexRunner\\PlayerBullet.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAQwCgAAAAYAAAA",
+              "ViewState": "AQIAAJMAAAAAAAAAAAAIwJ0AAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-03T09:05:43.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-03T09:05:43.511Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Collider.cs",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Collider.cs",
               "RelativeDocumentMoniker": "TrexRunner\\Collider.cs",
               "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Collider.cs",
               "RelativeToolTip": "TrexRunner\\Collider.cs",
-              "ViewState": "AQIAAIcAAAAAAAAAAADwv5kAAAAMAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T11:11:58.706Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "GameObject.cs",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\GameObject.cs",
               "RelativeDocumentMoniker": "TrexRunner\\GameObject.cs",
               "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\GameObject.cs",
               "RelativeToolTip": "TrexRunner\\GameObject.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAywEEAAAAIAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAD4v0oAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T11:30:07.779Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "MovingBackground.cs",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\MovingBackground.cs",
               "RelativeDocumentMoniker": "TrexRunner\\MovingBackground.cs",
@@ -161,12 +176,11 @@
               "RelativeToolTip": "TrexRunner\\MovingBackground.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAAAA8AAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T14:25:38.77Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-15T14:25:38.77Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "LoopingAnimation.cs",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\LoopingAnimation.cs",
               "RelativeDocumentMoniker": "TrexRunner\\LoopingAnimation.cs",
@@ -178,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "test.fx",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Content\\Resources\\test.fx",
               "RelativeDocumentMoniker": "TrexRunner\\Content\\Resources\\test.fx",
@@ -190,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MonoGame.Content.Builder.Task.targets",
               "DocumentMoniker": "C:\\Users\\neo.sellberg\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\build\\MonoGame.Content.Builder.Task.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\build\\MonoGame.Content.Builder.Task.targets",

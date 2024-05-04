@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using static TrexRunner.BoxCollider;
 
@@ -52,7 +53,7 @@ public partial class Game1 : Game
     /// <summary>
     /// The boss GameObject 
     /// </summary>
-    public Boss CurBoss;
+    public static Boss CurBoss;
 
 
 
@@ -66,6 +67,7 @@ public partial class Game1 : Game
     /// The position of the mouse last frame
     /// </summary>
     private Vector2 LastMousePos;
+    private Effect CRTShader;
 
     /// <summary>
     /// The Velocity of the mouse required to shoot
@@ -101,7 +103,7 @@ public partial class Game1 : Game
     
     Effect WhiteEffect;
 
-    public GameState CurState;
+    public static GameState CurState = GameState.Playing;
 
     
 
@@ -121,6 +123,20 @@ public partial class Game1 : Game
         
     }
 
+    public static void SetState(GameState state)
+    {
+        CurState = state;
+        if (state == GameState.Playing)
+        {
+            List<Projectile> temp = Projectiles.ToList();
+
+            foreach(Projectile p in temp)
+            {
+                p.Remove();
+            }
+        }
+    }
+
     protected override void Initialize()
     {
 
@@ -133,9 +149,11 @@ public partial class Game1 : Game
     protected override void LoadContent()
     {
         CustomRect.Textr = Content.Load<Texture2D>("Resources/Circle");
+        CRTShader = Content.Load<Effect>("Resources/CRTShader");
+        CRTShader.Parameters["PixelSize"].SetValue(8);
+        CRTShader.Parameters["ScreenSize"].SetValue(WindowResolution);
 
-
-        List<Texture2D> frames = new List<Texture2D>();
+        List <Texture2D> frames = new List<Texture2D>();
 
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile000"));
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile001"));
@@ -145,14 +163,15 @@ public partial class Game1 : Game
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile005"));
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile006"));
         frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile007"));
-        //BossAttackPattern attackPattern = new SphereAttack();
+        
 
         CurBoss = new Boss(new Vector2(250, 100), frames, new Point(2, 2), 20, 1, new Vector2[4] { new Vector2(100, 100), new Vector2(100, 200), new Vector2(350, 100), new Vector2(350, 200)}, 200, 0.004f, 5, 55);
+        CurBoss.AttackPattern = new SphereAttack(3, 8, 100, CurBoss, Content.Load<Texture2D>("Resources/fireball"), new Point(1, 1));
 
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         player = new Player(new Vector2(0, 0), Content.Load<Texture2D>("Resources/Player"));
         player.TextureScale = new Point(5, 5);
-
+        
         Background = Content.Load<Texture2D>("Resources/Background");
 
         BulletTexture = Content.Load<Texture2D>("Resources/fireball");
@@ -173,7 +192,11 @@ public partial class Game1 : Game
         InputCheck();
 
         // TODO: Add your update logic here
-        player.Update();
+        if (CurState == GameState.Playing)
+        {
+            player.Update();
+        }
+        
         Projectile[] projectilesToBeUpdated = Projectiles.ToArray();
 
         foreach (Projectile projectile in projectilesToBeUpdated)
@@ -266,23 +289,28 @@ public partial class Game1 : Game
     {
         GraphicsDevice.Clear(Color.Transparent);
         RenderTarget2D renderTarget = new RenderTarget2D(_graphics.GraphicsDevice, (int)WindowResolution.X, (int)WindowResolution.Y);
-        //GraphicsDevice.SetRenderTarget(renderTarget);
+        GraphicsDevice.SetRenderTarget(renderTarget);
         GraphicsDevice.Clear(Color.Transparent);
+        
 
 
-        GraphicsDevice.SetRenderTarget(null);
 
         _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
 
-        _spriteBatch.Draw(Background, new Vector2(0, 0), new Color(100, 150, 100));
-        player.Draw(_spriteBatch);
+        _spriteBatch.Draw(Background, new Vector2(0, 0), CurState == GameState.Playing ? new Color(100, 150, 100) : new Color(2, 2, 2));
+        if (CurState == GameState.Playing)
+        {
+            player.Draw(_spriteBatch);
+        }
+        
+        
         foreach (Projectile bullet in Projectiles)
         {
             bullet.Draw(_spriteBatch);
         }
 
         //_spriteBatch.Draw(renderTarget, new Vector2(0, 0), Color.White);
-       
+        
         
         _spriteBatch.End();
         //GraphicsDevice.SetRenderTarget(null);
@@ -292,11 +320,25 @@ public partial class Game1 : Game
 
         _spriteBatch.End();
 
-        //_spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, testShader);
+        _spriteBatch.Begin();
 
-        //_spriteBatch.Draw(RenderTarget, new Rectangle(0, 0, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight), Color.White);
+        if (CurState == GameState.Dead)
+        {
+            _spriteBatch.Draw(Collider.PixelTexture, new Rectangle(0, 0, (int)WindowResolution.X, (int)WindowResolution.Y), new Color(2, 2, 2, 150));
+        }
 
-        //_spriteBatch.End();
+        _spriteBatch.End();
+
+        GraphicsDevice.SetRenderTarget(null);
+        GraphicsDevice.Clear(Color.Transparent);
+        CRTShader.Parameters["Time"].SetValue((float)Time.ElapsedGameTime.TotalSeconds);
+        CRTShader.Parameters["SpriteTexture"].SetValue(renderTarget);
+        
+        _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, CRTShader);
+
+        _spriteBatch.Draw(renderTarget, new Rectangle(0, 0, _graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight), Color.White);
+
+        _spriteBatch.End();
 
         // TODO: Add your drawing code here
 
@@ -336,7 +378,8 @@ public static class MathN
     }
     public static Vector2 RotationToVector(float rotation)
     {
-        return new Vector2(MathF.Cos(rotation), MathF.Sin(rotation));
+        rotation = rotation * (MathF.PI / 180);
+        return new Vector2(MathF.Round(MathF.Cos(rotation), 6), MathF.Round(MathF.Sin(rotation), 6));
     }
     public static float UnsignedAngle(Vector2 from, Vector2 to)
     {

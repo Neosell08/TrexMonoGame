@@ -27,7 +27,8 @@ const float PincushionAmount = 0.02;
 
 float4 Pixelate(VertexShaderOutput input) : COLOR
 {
-    float2 onePixel = float2(1 / 1920, 1 / 1080);// / 2;
+	
+    float2 onePixel = float2(8 / 1920, 8 / 1080);// / 2;
 	// 256
     //float2 ratio = float2(1920 / 4, 1080 / 4); //  (ScreenSize / 8);
     float2 ratio = float2(480, 270); //  (ScreenSize / 8);
@@ -56,11 +57,11 @@ float4 Posterize(VertexShaderOutput input) : COLOR
 }
 
 
-float4 Chromatic(VertexShaderOutput input) : COLOR
+float4 ChromaticShader(VertexShaderOutput input) : COLOR
 {
 	float dist = 0.1 + pow(length(input.TextureCoordinates - 0.5), 3);
 
-	float strength = 0.0075;
+	float strength = 0.02;
 
 	float2 redOffset = float2(1, 0) * strength;
 	float2 greenOffset = float2(0, 0) * strength;
@@ -77,7 +78,7 @@ float4 Chromatic(VertexShaderOutput input) : COLOR
 
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
-	float dist = 1.5 + pow(length(input.TextureCoordinates - 0.5), 2);
+	float dist = 0.1 + pow(length(input.TextureCoordinates - 0.5), 2);
 	float2 ScanCoord = (input.TextureCoordinates - 0.5) * dist * 0.6 + 0.5;
 
 	if (ScanCoord.x < 0) return float4(0, 0, 0, 1);
@@ -97,7 +98,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 	return float4(lerp(baseColor.rgb, 1, scanLine/12), 1);
 }
 
-float4 Vingette(VertexShaderOutput input) : COLOR
+float4 VingetteShader(VertexShaderOutput input) : COLOR
 {
 	float dist = pow(length(input.TextureCoordinates - 0.5), 1.5);
 	return tex2D(SpriteTextureSampler, input.TextureCoordinates) * input.Color * (0.9 - dist);
@@ -123,7 +124,7 @@ technique Chromatic
 {
 	pass P0
 	{
-		PixelShader = compile PS_SHADERMODEL Chromatic();
+		PixelShader = compile PS_SHADERMODEL ChromaticShader();
 	}
 };
 
@@ -153,6 +154,6 @@ technique Vingette
 {
 	pass P0
 	{
-		PixelShader = compile PS_SHADERMODEL Vingette();
+		PixelShader = compile PS_SHADERMODEL VingetteShader();
 	}
 };

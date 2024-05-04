@@ -139,6 +139,12 @@
 /processorParam:TextureFormat=Color
 /build:Resources/ComputerFrames/tile007.png
 
+#begin Resources/CRTShader.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Resources/CRTShader.fx
+
 #begin Resources/dead.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

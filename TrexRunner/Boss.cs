@@ -155,15 +155,19 @@ namespace TrexRunner
 
                     Game1.Projectiles.Add(prj);
                 }
+                Timer = 0;
             }
+
+            
         }
-        public SphereAttack(float shootDelay, int bulletCount, Boss parent, Texture2D textr, Point textureScale)
+        public SphereAttack(float shootDelay, int bulletCount, float bulletSpeed, Boss parent, Texture2D textr, Point textureScale)
         {
             ShootDelay = shootDelay;
             BulletCount = bulletCount;
             Parent = parent;
             Textr = textr;
             TextureScale = textureScale;
+            ProjectileSpeed = bulletSpeed;
         }
     }
 }
@@ -179,6 +183,7 @@ public class BossProjectile: Projectile
         Rotation = rotation;
         Textr = textr;
         Position = pos;
+        Collider = new CircleCollider(pos, (textr.Width * textureScale.X + textr.Height * textureScale.Y)/2, this);
 
         Rotation += MathF.Atan2(velocity.Y, velocity.X);
     }
@@ -188,6 +193,10 @@ public class BossProjectile: Projectile
         {
             plr.Kill();
         }
+    }
+    public override void Update()
+    {
+        base.Update();
     }
 
 
