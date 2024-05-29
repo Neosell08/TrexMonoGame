@@ -25,11 +25,47 @@
 /processorParam:TextureFormat=Color
 /build:Resources/Background.jpg
 
-#begin Resources/bossHit.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:Resources/bossHit.wav
+#begin Resources/Bloom.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:Resources/Bloom.fx
+
+#begin Resources/Buttons/tile000.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Resources/Buttons/tile000.png
+
+#begin Resources/Buttons/tile001.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Resources/Buttons/tile001.png
+
+#begin Resources/ChipBullet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Resources/ChipBullet.png
 
 #begin Resources/Circle.png
 /importer:TextureImporter
@@ -145,11 +181,11 @@
 /processorParam:DebugMode=Auto
 /build:Resources/CRTShader.fx
 
-#begin Resources/dead.wav
+#begin Resources/explosion.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Resources/dead.wav
+/build:Resources/explosion.wav
 
 #begin Resources/fireball.png
 /importer:TextureImporter
@@ -162,6 +198,60 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Resources/fireball.png
+
+#begin Resources/laserShoot (1).wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Resources/laserShoot (1).wav
+
+#begin Resources/laserShoot (2).wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Resources/laserShoot (2).wav
+
+#begin Resources/laserShoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Resources/laserShoot.wav
+
+#begin Resources/Level1Icon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Resources/Level1Icon.png
+
+#begin Resources/Level1Song.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Resources/Level1Song.mp3
+
+#begin Resources/LightningFrames/tile000.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Resources/LightningFrames/tile000.png
+
+#begin Resources/MainMenuSong.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Resources/MainMenuSong.mp3
 
 #begin Resources/pixel.png
 /importer:TextureImporter
@@ -187,9 +277,60 @@
 /processorParam:TextureFormat=Color
 /build:Resources/Player.png
 
+#begin Resources/PlayerDead.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Resources/PlayerDead.wav
+
+#begin Resources/RaySound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Resources/RaySound.wav
+
+#begin Resources/SmallerFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Resources/SmallerFont.spritefont
+
+#begin Resources/SmallFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Resources/SmallFont.spritefont
+
 #begin Resources/test.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:Resources/test.fx
+
+#begin Resources/TitleFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Resources/TitleFont.spritefont
+
+#begin Resources/Warning.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Resources/Warning.png
+
+#begin Resources/WarningSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Resources/WarningSound.wav
 

@@ -1,4 +1,7 @@
-﻿#if OPENGL
+﻿//Isak's CRTShader. Not made by me
+
+
+#if OPENGL
 	#define SV_POSITION POSITION
 	#define VS_SHADERMODEL vs_3_0
 	#define PS_SHADERMODEL ps_3_0
@@ -11,6 +14,7 @@ Texture2D SpriteTexture;
 float Time;
 float2 ScreenSize = float2(1920, 1080);
 float PixelSize = 8;
+float ChromaticStrength = 0.02f;
 
 sampler2D SpriteTextureSampler = sampler_state
 {
@@ -61,11 +65,11 @@ float4 ChromaticShader(VertexShaderOutput input) : COLOR
 {
 	float dist = 0.1 + pow(length(input.TextureCoordinates - 0.5), 3);
 
-	float strength = 0.02;
+	
 
-	float2 redOffset = float2(1, 0) * strength;
-	float2 greenOffset = float2(0, 0) * strength;
-	float2 blueOffset = float2(-1, 0) * strength;
+	float2 redOffset = float2(1, 0) * ChromaticStrength;
+    float2 greenOffset = float2(0, 0) * ChromaticStrength;
+    float2 blueOffset = float2(-1, 0) * ChromaticStrength;
 
 	float4 color = 1;
 
@@ -78,15 +82,16 @@ float4 ChromaticShader(VertexShaderOutput input) : COLOR
 
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
+	
 	float dist = 0.1 + pow(length(input.TextureCoordinates - 0.5), 2);
-	float2 ScanCoord = (input.TextureCoordinates - 0.5) * dist * 0.6 + 0.5;
+	float2 ScanCoord = (input.TextureCoordinates - 0.5) * 1 + 0.5;
 
 	if (ScanCoord.x < 0) return float4(0, 0, 0, 1);
 	if (ScanCoord.x > 1) return float4(0, 0, 0, 1);
 	if (ScanCoord.y < 0) return float4(0, 0, 0, 1);
 	if (ScanCoord.y > 1) return float4(0, 0, 0, 1);
 
-	float scanLine = sin(radians((Time*2 - ScanCoord.y * 50) * 360));
+	float scanLine = sin(radians((Time*50 - ScanCoord.y * 50) * 500));
 
 	if (scanLine > 0) scanLine = pow(scanLine, 5);
 
@@ -106,48 +111,58 @@ float4 VingetteShader(VertexShaderOutput input) : COLOR
 
 //technique Pixelate2
 //{
-//	pass P0
-//	{
-//		PixelShader = compile PS_SHADERMODEL Pixelate();
-//	}
+//    pass P0
+//    {
+//        PixelShader = compile PS_SHADERMODEL Pixelate();
+
+//    }
 //};
 
-//technique Posterize
+//technique Posterize2
+//{
+//    pass P0
+//    {
+//        PixelShader = compile PS_SHADERMODEL Posterize();
+//    }
+//};
+
+//technique Chromatic
 //{
 //	pass P0
 //	{
-//		PixelShader = compile PS_SHADERMODEL Posterize();
+//		PixelShader = compile PS_SHADERMODEL ChromaticShader();
 //	}
 //};
 
-technique Chromatic
-{
-	pass P0
-	{
-		PixelShader = compile PS_SHADERMODEL ChromaticShader();
-	}
-};
-
-technique Blur1
-{
-	pass P0
-	{
-		PixelShader = compile PS_SHADERMODEL Blur();
-	}
-};
-technique Blur2
+//technique Blur1
+//{
+//	pass P0
+//	{
+//		PixelShader = compile PS_SHADERMODEL Blur();
+//	}
+//};
+//technique Blur2
+//{
+//    pass P0
+//    {
+//        PixelShader = compile PS_SHADERMODEL Blur();
+//    }
+//};
+technique Scanlines
 {
     pass P0
     {
         PixelShader = compile PS_SHADERMODEL Blur();
     }
-};
-technique Scanlines
-{
-	pass P0
-	{
-		PixelShader = compile PS_SHADERMODEL MainPS();
-	}
+    pass P1
+    {
+        PixelShader = compile PS_SHADERMODEL MainPS();
+
+    }
+    pass P2
+    {
+        PixelShader = compile PS_SHADERMODEL ChromaticShader();
+    }
 };
 
 technique Vingette

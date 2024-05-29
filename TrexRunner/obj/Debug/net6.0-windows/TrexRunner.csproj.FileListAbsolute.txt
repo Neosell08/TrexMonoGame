@@ -133,7 +133,34 @@ C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile005.xnb
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile006.xnb
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ComputerFrames\tile007.xnb
-C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\bossHit.xnb
-C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\dead.xnb
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Circle.xnb
 C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\CRTShader.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Buttons\tile000.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Buttons\tile001.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Level1Icon.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\SmallerFont.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\SmallFont.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\TitleFont.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\ChipBullet.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\explosion.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\laserShoot (1).xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\laserShoot (2).xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\laserShoot.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Level1Song.mp4
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Level1Song.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\MainMenuSong.mp4
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\MainMenuSong.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Level1Song.wma
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\MainMenuSong.wma
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\PlayerDead.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Bloom.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\LightningFrames\tile000.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\LightningFrames\tile001.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\LightningFrames\tile002.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\LightningFrames\tile003.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\SmallerFont.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\SmallFont.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\TitleFont.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\Warning.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\RaySound.xnb
+C:\Users\neo.sellberg\Documents\GitHub\TrexMonoGame\TrexRunner\bin\Debug\net6.0-windows\Content\Resources\WarningSound.xnb

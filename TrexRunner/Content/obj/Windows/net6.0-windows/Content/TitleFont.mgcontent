@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/TitleFont.spritefont</SourceFile>
+  <SourceTime>2024-05-13T15:45:25.0078615+02:00</SourceTime>
+  <DestFile>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/bin/Windows/Content/TitleFont.xnb</DestFile>
+  <DestTime>2024-05-13T15:45:27.08042+02:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2022-07-26T13:44:56+02:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
