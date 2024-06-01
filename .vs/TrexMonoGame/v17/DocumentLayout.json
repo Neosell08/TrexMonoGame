@@ -3,11 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\code\\gameobject\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|c:\\users\\neo.sellberg\\documents\\github\\trexmonogame\\trexrunner\\code\\gameobject\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\code\\gameobject\\gameobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|c:\\users\\neo.sellberg\\documents\\github\\trexmonogame\\trexrunner\\code\\game1\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\trexrunner\\code\\game1\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{772F51A4-E92F-4143-A7CC-E44C62D4E699}|TrexRunner\\TrexRunner.csproj|solutionrelative:trexrunner\\code\\game1\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -65,7 +65,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Document",
@@ -99,19 +99,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Code\\Game1\\Game1.cs",
-              "RelativeDocumentMoniker": "TrexRunner\\Code\\Game1\\Game1.cs",
-              "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Code\\Game1\\Game1.cs",
-              "RelativeToolTip": "TrexRunner\\Code\\Game1\\Game1.cs",
-              "ViewState": "AQIAAHEBAAAAAAAAAAAQwIMBAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T08:38:23.191Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -181,10 +168,22 @@
               "RelativeDocumentMoniker": "TrexRunner\\Code\\GameObject\\GameObject.cs",
               "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Code\\GameObject\\GameObject.cs",
               "RelativeToolTip": "TrexRunner\\Code\\GameObject\\GameObject.cs",
-              "ViewState": "AQIAANwAAAAAAAAAAAAuwO0AAAA4AAAA",
+              "ViewState": "AQIAAOEAAAAAAAAAAAAuwO4AAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-12T18:34:02.43Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Code\\Game1\\Game1.cs",
+              "RelativeDocumentMoniker": "TrexRunner\\Code\\Game1\\Game1.cs",
+              "ToolTip": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\Code\\Game1\\Game1.cs",
+              "RelativeToolTip": "TrexRunner\\Code\\Game1\\Game1.cs",
+              "ViewState": "AQIAAHEBAAAAAAAAAAAQwIMBAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-12T08:38:23.191Z"
             },
             {
               "$type": "Document",
