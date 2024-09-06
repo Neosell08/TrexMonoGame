@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SOSnlhjJetmvqtNTWSm5uCAABG7MdHITgv/O1/99XvBKtbG0Oddwp7mryM00kPu4A6BlSDkVZ1yVLXopBOJtFw==",
+  "dgSpecHash": "Dds2hy0ARLE=",
   "success": true,
   "projectFilePath": "C:\\Users\\neo.sellberg\\Documents\\GitHub\\TrexMonoGame\\TrexRunner\\TrexRunner.csproj",
   "expectedPackageFiles": [
@@ -126,5 +126,12 @@
     "C:\\Users\\neo.sellberg\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
     "C:\\Users\\neo.sellberg\\.nuget\\packages\\system.xml.xpath.xdocument\\4.0.1\\system.xml.xpath.xdocument.4.0.1.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    }
+  ]
 }
