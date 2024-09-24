@@ -86,8 +86,7 @@
               "ViewState": "AgIAAIgBAAAAAAAAAAAewJYBAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-12T18:35:53.136Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -119,8 +118,7 @@
               "RelativeToolTip": "TrexRunner\\Code\\Game1\\Level.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAArwBAAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-07T18:51:56.914Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-07T18:51:56.914Z"
             },
             {
               "$type": "Document",
@@ -132,8 +130,7 @@
               "RelativeToolTip": "TrexRunner\\Code\\PlayerBullet.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAIAwwGoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T18:36:03.054Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-12T18:36:03.054Z"
             },
             {
               "$type": "Document",
@@ -157,8 +154,7 @@
               "RelativeToolTip": "TrexRunner\\Code\\GameObject\\GameObject.cs",
               "ViewState": "AgIAACwAAAAAAAAAAAAewDoAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T18:34:02.43Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-12T18:34:02.43Z"
             },
             {
               "$type": "Document",
@@ -194,8 +190,7 @@
               "RelativeToolTip": "TrexRunner\\Code\\LoopingAnimation.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAewDsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-14T09:09:38.924Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-14T09:09:38.924Z"
             },
             {
               "$type": "Document",
@@ -221,10 +216,6 @@
               "ViewState": "AgIAADwAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2024-09-09T11:22:44.786Z"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -297,6 +288,10 @@
               "ViewState": "AQIAAAMAAAAAAAAAAAAowBkAAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-12T18:37:01.036Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         }
