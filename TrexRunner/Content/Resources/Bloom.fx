@@ -22,7 +22,7 @@ struct VertexShaderOutput
 	float2 TextureCoordinates : TEXCOORD0;
 };
 
-#define colorRange 1.0
+#define colorRange 24.0
 
 float3 jodieReinhardTonemap(float3 c)
 {
