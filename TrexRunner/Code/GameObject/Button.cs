@@ -25,7 +25,7 @@ namespace SpaceShooter
         /// <param name="textr">Texture info</param>
         /// <param name="onButtonPressed">Action to invoke on the button being pressed</param>
         public Button(Vector2 pos, float rotation, Texture textr, Action onButtonPressed = null)
-        { 
+        {
             OnButtonPressed = onButtonPressed;
 
             Position = pos;
