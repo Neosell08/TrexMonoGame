@@ -34,13 +34,11 @@
     <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/RaySound.wav</File>
     <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/SmallerFont.spritefont</File>
     <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/SmallFont.spritefont</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/test.fx</File>
     <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/TitleFont.spritefont</File>
     <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Warning.png</File>
     <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/WarningSound.wav</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

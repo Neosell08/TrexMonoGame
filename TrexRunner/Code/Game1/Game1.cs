@@ -380,7 +380,7 @@ public partial class Game1 : Game
     }
     public void SaveExternalData()
     {
-        if (File.Exists("ExternalData.json"))
+        if (File.Exists("ExternalData.json") && !float.IsInfinity(PersonalRecord))
         {
             string jsonString = JsonSerializer.Serialize(PersonalRecord);
             File.WriteAllText("ExternalData.json", jsonString);
