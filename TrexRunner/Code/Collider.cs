@@ -42,7 +42,7 @@ namespace SpaceShooter
         /// <summary>
         /// Position of the colliders center 
         /// </summary>
-        public abstract Vector2 Position { get; set; }
+        public abstract Vector2 Position {  get; set; }
 
         /// <summary>
         /// Game object using this collider
@@ -53,7 +53,7 @@ namespace SpaceShooter
         /// List of strings used for differentiating between objects of the same class
         /// </summary>
         public List<string> Tags = new List<string>();
-
+        
 
 
 
@@ -91,7 +91,7 @@ namespace SpaceShooter
     }
 
 
-
+    
 
 
     /// <summary>
@@ -114,15 +114,11 @@ namespace SpaceShooter
         /// <summary>
         /// Position of the center of the circle
         /// </summary>
-        public override Vector2 Position
-        {
-            get { return _Position; }
-            set
+        public override Vector2 Position { get { return _Position; } set 
             {
                 _Position = value;
                 TopLeftCorner = new Vector2(Convert.ToInt32(Position.X - Radius), Convert.ToInt32(Position.Y - Radius));
-            }
-        }
+            } }
 
 
         /// <summary>
@@ -144,7 +140,7 @@ namespace SpaceShooter
             }
         }
 
-
+        
         public override bool IsColliding(Collider collider)
         {
             if (collider == null) { return false; }
@@ -182,8 +178,8 @@ namespace SpaceShooter
                 return collider.IsColliding(this);
             }
         }
-
-
+            
+        
         /// <summary>
         /// 
         /// </summary>
@@ -196,16 +192,16 @@ namespace SpaceShooter
             Position = pos;
             Radius = radius;
             Parent = parent;
-            TopLeftCorner = new Vector2(Convert.ToInt32(pos.X - radius), Convert.ToInt32(pos.Y - radius));
-
+            TopLeftCorner = new Vector2(Convert.ToInt32(pos.X-radius), Convert.ToInt32(pos.Y - radius));
+            
         }
 
         public override void Draw(SpriteBatch spritebatch)
         {
-
-            spritebatch.Draw(PixelTexture, TopLeftCorner, null, Color.Magenta, 0, Vector2.Zero, new Vector2((int)(Radius * 2), (int)(Radius * 2)), 0, 0);
+            
+            spritebatch.Draw(PixelTexture, TopLeftCorner, null, Color.Magenta, 0, Vector2.Zero, new Vector2((int)(Radius*2), (int)(Radius*2)), 0, 0);
         }
-
+        
     }
     /// <summary>
     /// Rectangular collider 

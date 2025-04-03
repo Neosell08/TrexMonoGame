@@ -12,24 +12,22 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using SpaceShooter.Code;
-
+using static SpaceShooter.BoxCollider;
 using System.Text.Json;
 using System.IO;
-using TrexRunner.Code.Game1;
 
 
 namespace SpaceShooter;
 
 public partial class Game1 : Game
 {
-
+    
 
     private GraphicsDeviceManager _graphics;
     /// <summary>
     /// Main spritebatch
     /// </summary>
     private SpriteBatch _spriteBatch;
-    private Level[] Levels;
 
     /// <summary>
     /// Amount of time the level has been played
@@ -164,7 +162,7 @@ public partial class Game1 : Game
     
     public Game1()
     {
-        
+        LoadExternalData();
         _graphics = new GraphicsDeviceManager(this);
         _graphics.GraphicsProfile = GraphicsProfile.HiDef;
         Content.RootDirectory = "Content";
@@ -190,8 +188,6 @@ public partial class Game1 : Game
 
     protected override void LoadContent()
     {
-        
-        LoadExternalData();
         Collider.PixelTexture = Content.Load<Texture2D>("Resources/pixel");
         MainMenuSong = Content.Load<Song>("Resources/MainMenuSong");
         Level1Song = Content.Load<Song>("Resources/Level1Song");
@@ -207,37 +203,16 @@ public partial class Game1 : Game
         CRTShader.Parameters["ScreenSize"].SetValue(ScreenResolution);
         Background = Content.Load<Texture2D>("Resources/Background");
 
-
+        InitBoss(true);
 
         RenderTarget = new RenderTarget2D(GraphicsDevice, (int)WindowResolution.X, (int)WindowResolution.Y);
         RenderTarget2 = new RenderTarget2D(GraphicsDevice, (int)WindowResolution.X, (int)WindowResolution.Y);
         _spriteBatch = new SpriteBatch(GraphicsDevice);
         player = new Player(new Vector2(300, 300), new Texture(Content.Load<Texture2D>("Resources/Player"), new Vector2(2, 2)), Content.Load<SoundEffect>("Resources/PlayerDead"));
         player.Textr.TextureScale = new Vector2(5, 5);
+        
+        
 
-        Levels = new Level[1];
-        List<Texture2D> frames = new List<Texture2D>();
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile000"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile001"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile002"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile003"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile004"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile005"));
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile006"));
-
-        CurBoss = new Boss(new Vector2(250, 100), frames, new Texture(null, new Vector2(2, 2)), 23, 1, new Vector2[4] { new Vector2(100, 100), new Vector2(100, 200), new Vector2(WindowResolution.X - 100, 100), new Vector2(WindowResolution.X - 100, 200) }, 250, 0.0075f, 5, 55, Content.Load<SoundEffect>("Resources/explosion"));
-
-        frames = new List<Texture2D>();
-        frames.Add(Content.Load<Texture2D>("Resources/LightningFrames/tile000"));
-
-        CurBoss.AttackPattern = new SphereAndLightningAttack(new Vector2(0.6f, 1.1f), 10, 8, 100, 5, CurBoss, new Texture(Content.Load<Texture2D>("Resources/ChipBullet"), new Vector2(2, 2)), frames.ToArray(), 2, 2, GameObject.Game.player, new Texture(Content.Load<Texture2D>("Resources/Warning")), Content.Load<SoundEffect>("Resources/RaySound"), Content.Load<SoundEffect>("Resources/WarningSound"), 12);
-        frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile007"));
-
-        Texture2D textr = Content.Load<Texture2D>("Resources/Level1Icon");
-        Vector2 textureScale = new Vector2(100f / textr.Width, 100f / textr.Height);
-        Level1Icon = new Button(new Vector2(75 + ((textr.Width * textureScale.X) / 2), 120 + (textr.Height * textureScale.Y) / 2), 0, new Texture(textr, textureScale), () => { SetState(GameState.Countdown); });
-
-        Levels[0] = new Level(CurBoss, Level1Icon.Textr, Background, player.Textr, 0);
         BulletTexture = Content.Load<Texture2D>("Resources/fireball");
         player.Collider = new CircleCollider(player.Position, player.Textr.TextureScale.X * player.Textr.Textr.Width/2, player);
         
@@ -249,7 +224,9 @@ public partial class Game1 : Game
 
         PlayButton = new Button(new Vector2(50, 550), 0, new Texture(Content.Load<Texture2D>("Resources/Buttons/tile000"), new Vector2(2,2)), () => { SetState(GameState.Countdown); });
         ExitButton = new Button(new Vector2(550, 550), 0, new Texture(Content.Load<Texture2D>("Resources/Buttons/tile001"), new Vector2(2,2)), () => { SetState(GameState.MainMenu); });
-        
+        Texture2D textr = Content.Load<Texture2D>("Resources/Level1Icon");
+        Vector2 textureScale = new Vector2(100f/textr.Width, 100f/textr.Height);
+        Level1Icon = new Button(new Vector2(75 + ((textr.Width*textureScale.X)/2), 120 + (textr.Height*textureScale.Y)/2), 0, new Texture(textr, textureScale), () => { SetState(GameState.Countdown); });
 
         SpriteFont titleFont = Content.Load<SpriteFont>("TitleFont");
         SpriteFont smallFont = Content.Load<SpriteFont>("SmallFont");
@@ -283,7 +260,7 @@ public partial class Game1 : Game
         {
             List<Projectile> temp = Projectiles.ToList();
 
-            
+            InitBoss();
             LightningBossAttackObject[] lightnings = LightningObjects.ToArray();
 
             foreach (LightningBossAttackObject lightning in lightnings)
@@ -358,7 +335,28 @@ public partial class Game1 : Game
     /// Initializes a boss data
     /// </summary>
     /// <param name="loadContent">Whether or not to load textures</param>
+    public void InitBoss(bool loadContent = false)
+    {
+        List<Texture2D> frames = new List<Texture2D>();
 
+        if (loadContent)
+        {
+            frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile000"));
+            frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile001"));
+            frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile002"));
+            frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile003"));
+            frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile004"));
+            frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile005"));
+            frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile006"));
+            frames.Add(Content.Load<Texture2D>("Resources/ComputerFrames/tile007"));
+        }
+        CurBoss = new Boss(new Vector2(250, 100), loadContent ? frames : CurBoss.Anim.Frames, new Texture(null, new Vector2(2, 2)), 23, 1, new Vector2[4] { new Vector2(100, 100), new Vector2(100, 200), new Vector2(WindowResolution.X - 100, 100), new Vector2(WindowResolution.X-100, 200) }, 250, 0.0075f, 5, 55, loadContent ? Content.Load<SoundEffect>("Resources/explosion") : CurBoss.DeathSound);
+        
+        frames = new List<Texture2D>();
+        frames.Add(Content.Load<Texture2D>("Resources/LightningFrames/tile000"));
+
+        CurBoss.AttackPattern = new SphereAndLightningAttack(new Vector2(0.6f, 1.1f), 10, 8, 100, 5, CurBoss, new Texture(Content.Load<Texture2D>("Resources/ChipBullet"), new Vector2(2, 2)), frames.ToArray(), 2, 2, GameObject.Game.player, new Texture(Content.Load<Texture2D>("Resources/Warning")), Content.Load<SoundEffect>("Resources/RaySound"), Content.Load<SoundEffect>("Resources/WarningSound"), 12 );
+    }
     public void LoadExternalData()
     {
         if (File.Exists("ExternalData.json"))

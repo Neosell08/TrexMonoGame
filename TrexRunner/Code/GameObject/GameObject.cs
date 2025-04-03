@@ -12,7 +12,6 @@ using SharpDX.MediaFoundation;
 
 namespace SpaceShooter
 {
-    
 
     /// <summary>
     /// Abstract class for representation on a graphics device and physics logic
