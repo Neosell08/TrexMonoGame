@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Texture = TrexRunner.Code.Game1.Texture;
 
 namespace SpaceShooter
 {
@@ -37,7 +38,7 @@ namespace SpaceShooter
         {
             Point mousePos = Mouse.GetState().Position;
 
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && MathN.IsInsideRange(mousePos.X, Position.X + Bounds.Width, Position.X - Bounds.Width) && MathN.IsInsideRange(mousePos.Y, Position.Y + Bounds.Height, Position.Y - Bounds.Height))
+            if (Mouse.GetState().LeftButton == ButtonState.Pressed && Globals.IsInsideRange(mousePos.X, Position.X + Bounds.Width, Position.X - Bounds.Width) && Globals.IsInsideRange(mousePos.Y, Position.Y + Bounds.Height, Position.Y - Bounds.Height))
             {
                 if (OnButtonPressed != null)
                 {

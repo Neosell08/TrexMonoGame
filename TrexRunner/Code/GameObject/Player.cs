@@ -8,12 +8,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SharpDX.Direct3D9;
 using SharpDX.MediaFoundation;
+using TrexRunner.Code.Game1;
+using Texture = TrexRunner.Code.Game1.Texture;
+using TrexRunner.Code.BossCode;
 
 namespace SpaceShooter
 {
-    partial class Game1
+    partial class GameInstance
     {
         public class Player : GameObject
         {
@@ -62,7 +64,7 @@ namespace SpaceShooter
 
                 CheckedColliders = new List<Collider>();
 
-                List<Projectile> collidingProjectiles = Game1.Projectiles.Where<Projectile>((n) => { return n is BossProjectile || n.Tags.Contains("debris"); }).ToList();
+                List<Projectile> collidingProjectiles = Projectile.Projectiles.Where<Projectile>((n) => { return n is BossProjectile || n.Tags.Contains("debris"); }).ToList();
                 foreach (Projectile proj in collidingProjectiles)
                 {
                     if (proj.Collider != null)
@@ -71,9 +73,9 @@ namespace SpaceShooter
                     }
                     
                 }
-                CheckedColliders.Add(Game1.CurBoss.Collider);
+                CheckedColliders.Add(GameInstance.CurBoss.Collider);
 
-                foreach (LightningBossAttackObject obj in Game1.LightningObjects)
+                foreach (LightningBossAttackObject obj in LightningBossAttackObject.LightningObjects)
                 {
                     CheckedColliders.Add(obj.Collider);
                 }
@@ -83,7 +85,7 @@ namespace SpaceShooter
             public override void Move(Vector2 dir)
             {
                 Position += dir;
-                Position = new Vector2(Math.Clamp(Position.X, 0, Game1.WindowResolution.X - (Textr.ScaledTextureScale.X/2)), Math.Clamp(Position.Y, 0, Game1.WindowResolution.X - (Textr.ScaledTextureScale.Y/2)));
+                Position = new Vector2(Math.Clamp(Position.X, 0, Globals.WindowResolution.X - (Textr.ScaledTextureScale.X/2)), Math.Clamp(Position.Y, 0, Globals.WindowResolution.X - (Textr.ScaledTextureScale.Y/2)));
                 Collider.Position = Position;
             }
             public override void Move(Vector2 dir, float speed)
@@ -100,7 +102,7 @@ namespace SpaceShooter
                 Kill();
                 if (collider.Parent is Projectile projectile)
                 {
-                    Projectiles.Remove(projectile);
+                    projectile.Remove();
                 }
             }
 

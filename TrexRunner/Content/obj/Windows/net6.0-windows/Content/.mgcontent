@@ -4,40 +4,40 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Background.jpg</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Bloom.fx</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Buttons/tile000.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Buttons/tile001.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ChipBullet.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Circle.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile000.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile001.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile002.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile003.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile004.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile005.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile006.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile007.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/CRTShader.fx</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/explosion.wav</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/fireball.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/laserShoot (1).wav</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/laserShoot (2).wav</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/laserShoot.wav</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Level1Icon.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Level1Song.mp3</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/LightningFrames/tile000.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/MainMenuSong.mp3</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/pixel.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Player.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/PlayerDead.wav</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/RaySound.wav</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/SmallerFont.spritefont</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/SmallFont.spritefont</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/test.fx</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/TitleFont.spritefont</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Warning.png</File>
-    <File>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/WarningSound.wav</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Background.jpg</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Bloom.fx</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Buttons/tile000.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Buttons/tile001.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ChipBullet.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Circle.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile000.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile001.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile002.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile003.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile004.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile005.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile006.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/ComputerFrames/tile007.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/CRTShader.fx</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/explosion.wav</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/fireball.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/laserShoot (1).wav</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/laserShoot (2).wav</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/laserShoot.wav</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Level1Icon.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Level1Song.mp3</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/LightningFrames/tile000.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/MainMenuSong.mp3</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/pixel.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Player.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/PlayerDead.wav</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/RaySound.wav</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/SmallerFont.spritefont</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/SmallFont.spritefont</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/test.fx</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/TitleFont.spritefont</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Warning.png</File>
+    <File>C:/Users/Neo Sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/WarningSound.wav</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

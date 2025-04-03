@@ -37,7 +37,7 @@ namespace SpaceShooter
         /// <summary>
         /// 1x1 White texture for mainly used for debugging
         /// </summary>
-        public static Texture2D PixelTexture = Game1._content.Load<Texture2D>("Resources/pixel");
+        public static Texture2D PixelTexture = GameInstance._content.Load<Texture2D>("Resources/pixel");
 
         /// <summary>
         /// Position of the colliders center 
@@ -128,7 +128,7 @@ namespace SpaceShooter
         /// <returns>Whether or not the the point is inside the circle</returns>
         public override bool IsColliding(Vector2 pos)
         {
-            double dist = MathN.Distance(Position, pos);
+            double dist = Globals.Distance(Position, pos);
 
             if (dist <= Radius)
             {
@@ -163,7 +163,7 @@ namespace SpaceShooter
             }
             else if (collider is CircleCollider circle)
             {
-                float dist = MathN.Distance(circle.Position, Position);
+                float dist = Globals.Distance(circle.Position, Position);
                 if (circle.Radius + Radius >= dist)
                 {
                     return true;

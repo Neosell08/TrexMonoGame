@@ -31,7 +31,7 @@ namespace SpaceShooter.Code
         /// <returns>Sound</returns>
         public T GetSound()
         {
-            return PotentialSounds[Game1.rng.Next(0, PotentialSounds.Count)];
+            return PotentialSounds[GameInstance.rng.Next(0, PotentialSounds.Count)];
         }
     }
 }
