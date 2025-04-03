@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/Resources/Bloom.fx</SourceFile>
-  <SourceTime>2024-09-09T12:52:25.0234237+02:00</SourceTime>
+  <SourceTime>2024-05-17T18:21:44.0903281+02:00</SourceTime>
   <DestFile>C:/Users/neo.sellberg/Documents/GitHub/TrexMonoGame/TrexRunner/Content/bin/Windows/Content/Resources/Bloom.xnb</DestFile>
-  <DestTime>2024-09-09T13:35:01.5070153+02:00</DestTime>
+  <DestTime>2024-05-17T18:21:46.7950235+02:00</DestTime>
   <Importer>EffectImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>EffectProcessor</Processor>
